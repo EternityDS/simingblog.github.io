@@ -1,0 +1,894 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Siming Yan</title>
+    <description>欢迎来到我的个人博客~</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 05 Jun 2019 23:51:17 +0800</pubDate>
+    <lastBuildDate>Wed, 05 Jun 2019 23:51:17 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>深入理解PCA</title>
+        <description>&lt;head&gt;
+		&lt;script src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+</description>
+        <pubDate>Wed, 05 Jun 2019 23:14:06 +0800</pubDate>
+        <link>http://localhost:4000/2019/06/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3PCA/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3PCA/</guid>
+        
+        <category>机器学习基础</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Python语言与数据挖掘课程期末复习</title>
+        <description>&lt;head&gt;
+		&lt;script src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;h3 id=&quot;assert函数&quot;&gt;assert函数&lt;/h3&gt;
+
+&lt;p&gt;assert condition，如果condition为false的话，就raise一个assert error出来&lt;/p&gt;
+
+&lt;h3 id=&quot;join函数&quot;&gt;join函数&lt;/h3&gt;
+
+&lt;p&gt;str = “-“;
+seq = (“a”, “b”, “c”); # 字符串序列
+print str.join( seq );&lt;/p&gt;
+
+&lt;p&gt;str把seq连接起来&lt;/p&gt;
+
+&lt;h3 id=&quot;list-set-tuple-dict用法&quot;&gt;list, set, tuple, dict用法&lt;/h3&gt;
+
+&lt;p&gt;https://www.cnblogs.com/soaringEveryday/p/5044007.html&lt;/p&gt;
+
+&lt;h3 id=&quot;map函数&quot;&gt;map函数&lt;/h3&gt;
+
+&lt;p&gt;map(function, iterable, …)&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;square&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# 计算列表各个元素的平方
+&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 使用 lambda 匿名函数
+&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;err&quot;&gt;提供了两个列表，对相同位置的列表数据进行相加&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;filter函数&quot;&gt;filter函数&lt;/h3&gt;
+
+&lt;p&gt;filter()函数用于过滤序列，过滤掉不符合条件的元素，返回由符合条件元素组成的新列表。&lt;/p&gt;
+
+&lt;p&gt;该接收两个参数，第一个为函数，第二个为序列，序列的每个元素作为参数传递给函数进行判，然后返回 True 或 False，最后将返回 True 的元素放到新列表中&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;is_odd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;newlist&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_odd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newlist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;enumerate函数&quot;&gt;enumerate函数&lt;/h3&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'one'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'two'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'three'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;element&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;enumerate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;...&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;element&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;...&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;one&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;two&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;three&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol&gt;
+  &lt;li&gt;格式化输出&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;generator生成器&quot;&gt;generator生成器&lt;/h3&gt;
+
+&lt;p&gt;迭代器：&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;iter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;带有 yield 的函数不再是一个普通函数，Python 解释器会将其视为一个 generator，调用 fab(5) 不会执行 fab 函数，而是返回一个 iterable 对象。每次next调用，执行到yield位置函数返回next元素&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;奇异值分解&quot;&gt;奇异值分解&lt;/h3&gt;
+
+&lt;p&gt;linalg库：linear algebra&lt;/p&gt;
+
+&lt;p&gt;np.linalg.inv：矩阵求逆&lt;/p&gt;
+
+&lt;p&gt;np.linalg.eig：矩阵求特征值&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;w, v = np.linalg.eig(a)&lt;/code&gt;，计算一个方阵的特征值和特征向量，其中特征向量v是归一化后的向量。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;w, v = np.linalg.eigh(a, UPLO='L')&lt;/code&gt;，用于赫米特矩阵的特征值计算。其中&lt;code class=&quot;highlighter-rouge&quot;&gt;UPLO&lt;/code&gt;的取值&lt;code class=&quot;highlighter-rouge&quot;&gt;L&lt;/code&gt;与&lt;code class=&quot;highlighter-rouge&quot;&gt;U&lt;/code&gt;分别表示计算时采用&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;的下三角还是上三角矩阵。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;w = np.linalg.eigvals(a)&lt;/code&gt;，与1.的最大差别就是没有计算特征向量。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;w = np.linalg.eigvalsh(a)&lt;/code&gt;，与2.的最大差别就是没有计算特征向量。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;SVD将原始的矩阵$Data$分解成三个矩阵$U$,$\Sigma$,和$V^T$，如果原始矩阵$Data$是$m$行$n$列，那么$U$,$\Sigma$,和$V^T$就分别是$m$行$m$列、$m$行$n$列和$n$行$n$列。&lt;/p&gt;
+
+&lt;p&gt;为了清晰起见，上述过程可以写成如下一行：&lt;script type=&quot;math/tex&quot;&gt;Data_{m\times n}=U_{m\times m}\Sigma_{m \times n}V^T_{n\times n}&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;上述分解中会构建出一个矩阵$\Sigma$，该矩阵只有对角元素，其他元素均为0. 另一个惯例就是，$\Sigma$的对角元素是从大到小排列的。这些对角元素称为奇异值（Singular Value），它们就是矩阵$Data Data^{T}$特征值的平方根。&lt;/p&gt;
+
+&lt;p&gt;在科学工程中，一直存在这样一个普遍事实：在某个奇异值的数目（$r$个）之后，其他的奇异值都置为0.这就意味着数据集中仅有$r$个重要特征，而其余特征则都是噪声或冗余特征。&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sigma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;VT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linalg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;svd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]])&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'U = '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Sigma = '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sigma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'VT = '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;VT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'U = '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.14142136&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.98994949&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+       &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.98994949&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.14142136&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]))&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Sigma = '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;1.00000000e+01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;1.44854506e-16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'VT = '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.70710678&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.70710678&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+       &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.70710678&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.70710678&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]))&lt;/span&gt;
+       
+&lt;span class=&quot;err&quot;&gt;可以看到矩阵Σ是以对角线元素组成的行向量返回。&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;用前三个奇异值来近似原矩阵：&lt;script type=&quot;math/tex&quot;&gt;Data_{m\times n}\approx U_{m\times 3}\Sigma_{3 \times 3}V^T_{3\times n}&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190604094722578.png&quot; width=&quot;40%&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;sigma_3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;diagflat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sigma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sigma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sigma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]])&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sigma_3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;VT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,:]))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;pca降维&quot;&gt;PCA降维&lt;/h3&gt;
+
+&lt;p&gt;通过计算数据的主成分，即协方差矩阵的特征向量，对数据进行降维&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;特征值和特征向量：&lt;/p&gt;
+
+    &lt;p&gt;从定义出发，Ax=cx：A为矩阵，c为特征值，x为特征向量。&lt;/p&gt;
+
+    &lt;p&gt;矩阵A乘以x表示，对向量x进行一次转换（旋转或拉伸）（是一种线性转换），而该转换的效果为常数c乘以向量x（即只进行拉伸）。&lt;/p&gt;
+
+    &lt;p&gt;我们通常求特征值和特征向量即为求出该矩阵能使哪些向量（当然是特征向量）只发生拉伸，使其发生拉伸的程度如何（特征值大小）。这样做的意义在于，看清一个矩阵在那些方面能产生最大的效果（power），并根据所产生的每个特征向量（一般研究特征值最大的那几个）进行分类讨论与研究。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;协方差矩阵即各个维度的相关性，通过求特征向量特征值，可以做到去噪和去冗余的过程。&lt;/p&gt;
+
+&lt;p&gt;具体关于PCA降维的理解，可以参考另一篇博客：深入理解PCA&lt;/p&gt;
+
+&lt;h3 id=&quot;基本排序算法&quot;&gt;基本排序算法&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;冒泡排序&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;my_bubble&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;快速排序&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;my_qsort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_qsort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:])))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_qsort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:])))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;归并排序&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]):&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+            
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+            
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+            
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;
+            
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;merge_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:])&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Mon, 03 Jun 2019 23:14:06 +0800</pubDate>
+        <link>http://localhost:4000/2019/06/Python%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/06/Python%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</guid>
+        
+        <category>PKU</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>几何深度学习</title>
+        <description>&lt;head&gt;
+		&lt;script src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;p&gt;不懂概念：Euclidean domains(i. e. grids)/ non-Euclidean domains(i.e. graphs and manifolds)&lt;/p&gt;
+
+&lt;h3 id=&quot;大纲&quot;&gt;大纲&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190526104149652.png&quot; alt=&quot;image-20190526104149652&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/image-20190526104149652.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;voxnet&quot;&gt;VoxNet&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190605165439540.png&quot; alt=&quot;image-20190605165439540&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/image-20190605165439540.png&quot; width=&quot;40%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;整合了occupancy grid representation和3d CNN&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;我们的结构直接从&lt;strong&gt;raw volumetric data&lt;/strong&gt;学习提取特征并对物体分类&lt;/li&gt;
+  &lt;li&gt;并不只是简单的利用depth channel，我们采用了fully volumetric representation&lt;/li&gt;
+  &lt;li&gt;研究了一个更加general的任务，任务中3d数据有不同的模态。也研究了不同的occupancy representations，并提取方法提高performance当数据在scale和orientation上有很大变化的时候&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;方法框架&quot;&gt;&lt;strong&gt;方法框架&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;首先输入的数据是点云segment&lt;/p&gt;
+
+&lt;p&gt;[1] A pipeline for the segmentation and classification of 3D point clouds,&lt;/p&gt;
+
+&lt;p&gt;[2] Towards 3D object recognition via classification of arbitrary object tracks&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;我们的方法主要包含两个部分：一个volumetric grid来表示我们对spatial occupancy的评估，一个3d CNN从occupancy grid中来预测label。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;volumetric-occupancy-grid&quot;&gt;&lt;strong&gt;Volumetric Occupancy Grid&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;我们首先来解释这里的占据率（Occupancy）指的是什么。在通常的尺度地图中，对于一个点，它要么有（Occupied状态，下面用1来表示）障碍物，要么没有（Free状态，下面用0来表示）障碍物。在occupancy grid中，对于一个点，我们用$p(s=1)$来表示它是Free状态的概率，用$p(s=0)$来表示它是Occupied状态的概率，当然两者的和为1。两个值太多了，我们引入两者的比值来作为点的状态:  $Odd(s) = \frac{p(s=1)}{p(s=0)}$&lt;/p&gt;
+
+&lt;p&gt;对于一个点，新来了一个测量值（Measurement，$z ～ {0, 1}$ ）之后我们需要更新它的状态。假设测量值来之前，该点的状态为 $Odd(s)$，我们要更新它为:$Odd(s丨z) = \frac{p(s=1丨z)}{p(s=0丨z)}$。这种表达方式类似于条件概率，表示在z发生的条件下s的状态。&lt;/p&gt;
+
+&lt;p&gt;根据贝叶斯公式：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Odd(s丨z) = \frac{p(s=1丨z)}{p(s=0丨z)} =   \frac{p(z丨s=1)p(s=1)/p(z)}{p(z丨s=0)p(s=0)/p(z)} = \frac{p(z丨s=1)}{p(z丨s=0)}Odd(s)&lt;/script&gt;
+
+&lt;p&gt;取对数：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;logOdd(s丨z) = log\frac{p(z丨s=1)}{p(z丨s=0)} + logOdd(s)&lt;/script&gt;
+
+&lt;p&gt;这样，含有测量值的项就只剩下了 $log\frac{p(z丨s=1)}{p(z丨s=0)} $.我们称这个比值为测量值模型(measurement model)，标记为$lomeas$，测量值模型只有两种$lofree = log\frac{p(z=0丨s=1)}{p(z=0丨s=0)}$,和$looccu = log\frac{p(z=1丨s=1)}{p(z=1丨s=0)}$,而且都是定值。&lt;/p&gt;
+
+&lt;p&gt;这样，如果我们用$logOdd(s)$来表示位置s的状态S的话，我们的更新规则就进一步简化为$S^{+} = S^{-} + lomeas$,$S^{+}$和$S^{-}$分别表示测量值之后和之前s的状态。&lt;/p&gt;
+
+&lt;p&gt;这种表示方法的好处是：1.它的信息比只考虑occupied space和free space的point cloud要更丰富 2.它们可以被储存和利用成简单有效的数据结构&lt;/p&gt;
+
+&lt;h3 id=&quot;reference-frame-and-resolution&quot;&gt;&lt;strong&gt;Reference frame and resolution&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;在我们的volumetric representation中，每个点(x,y,z)都映射到一个体素(i,j,k)上，这个映射依赖于origin, orientation和resolution三个参数。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;origin: 我们假设是从来自segmentation算法得到的&lt;/li&gt;
+  &lt;li&gt;orientation: 假设z轴和重力方向对齐，并且还有一些规则&lt;/li&gt;
+  &lt;li&gt;resolution: 根据不同数据集采取两个策略，LiDAR用一个固定的空间分辨率，其他的灵活点。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;occupancy-models&quot;&gt;&lt;strong&gt;Occupancy models&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;可以分为三类：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Binary occupancy grid：每个点的状态要么是occupied要么是unoccupied&lt;/li&gt;
+  &lt;li&gt;Density grid：文中说是probability the voxel would blocck a sensor beam&lt;/li&gt;
+  &lt;li&gt;Hit grid: 这个只考虑hit，不考虑unknown和free space，&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sun, 26 May 2019 17:45:06 +0800</pubDate>
+        <link>http://localhost:4000/2019/05/%E5%87%A0%E4%BD%95%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/05/%E5%87%A0%E4%BD%95%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
+        
+        <category>数学基础</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Logistic Regression</title>
+        <description>&lt;head&gt;
+		&lt;script src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+</description>
+        <pubDate>Sun, 26 May 2019 17:45:06 +0800</pubDate>
+        <link>http://localhost:4000/2019/05/Logistic-Regression/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/05/Logistic-Regression/</guid>
+        
+        <category>数学基础</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>微分几何第一章：欧氏空间</title>
+        <description>&lt;head&gt;
+		&lt;script src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;p&gt;课程内容：古典微分几何，曲线论，曲面论&lt;/p&gt;
+
+&lt;p&gt;方法：向量函数的微积分，活动标架法，张量分析&lt;/p&gt;
+
+&lt;h3 id=&quot;向量空间&quot;&gt;向量空间&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;向量内积&lt;/strong&gt;(数量积)：$\vec{a}\cdot\vec{b} =  &amp;lt;a, b&amp;gt; = 丨a丨丨b丨\cos\theta$&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;向量内积不遵循结合律
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;$(\vec{a}\cdot\vec{b})·\vec{c}\neq\vec{a}·(\vec{b}·\vec{c})$&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;向量外积&lt;/strong&gt;(向量积)：$\vec{a}\times\vec{b} , \vec{a}\bigwedge\vec{b}$&lt;/p&gt;
+
+&lt;p&gt;$\vec{a}\times\vec{b} = \begin{vmatrix}i &amp;amp; j &amp;amp; k \newline a_{1} &amp;amp; a_{2} &amp;amp; a_{3} \newline b_{1} &amp;amp; b_{2} &amp;amp; b_{3} 
+  \end{vmatrix}$&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;模&lt;/strong&gt;：$丨\vec{a}\times\vec{b}丨=丨\vec{a}丨丨\vec{b}丨\sin\theta$&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;方向&lt;/strong&gt;：$\vec{a}\times\vec{b} \bot a, b$，$ a, b, \vec{a}\times\vec{b}$成右手系：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application%20Support/typora-user-images/image-20190525102828179.png&quot; alt=&quot;image-20190525102828179&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;满足反交换律：$\vec{a}\times\vec{b} = - \vec{b}\times\vec{a}$&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;拉格朗日Lagrange恒等式（特殊情况）&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;p&gt;$(\vec{a}\cdot\vec{b})^2 + (\vec{a}\times\vec{b})^2 = a^2 b^2$&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;混合积(数量积)：&lt;/strong&gt;$(a, b, c) = (a\times b)\cdot c$ ，$(a, b, c) = (b, c, a) = (c, a, b)$&lt;/p&gt;
+
+&lt;p&gt;用分量表示：$(a, b, c) = \begin{vmatrix}
+   a_{1} &amp;amp; a_{2} &amp;amp; a_{3} \newline
+   b_{1} &amp;amp; b_{2} &amp;amp; b_{3} \newline
+   c_{1} &amp;amp; c_{2} &amp;amp; c_{3}
+  \end{vmatrix}$&lt;/p&gt;
+
+&lt;p&gt;几何性质：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;$a \bot b$ &amp;lt;==&amp;gt; $a \cdot b = 0$&lt;/li&gt;
+  &lt;li&gt;a, b共线，a // b &amp;lt;==&amp;gt; a, b线性相关 &amp;lt;==&amp;gt; $a \times b = 0$&lt;/li&gt;
+  &lt;li&gt;a, b, c共面  &amp;lt;==&amp;gt; a, b, c线性相关 &amp;lt;==&amp;gt; $(a, b, c) = 0$&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;向量函数微积分&quot;&gt;向量函数微积分&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190525140204556.png&quot; alt=&quot;image-20190525140204556&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190525140658921.png&quot; alt=&quot;image-20190525140658921&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;向量函数的微分积分就是对它每个分量的微分积分
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190525141030990.png&quot; alt=&quot;image-20190525141030990&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190525141308842.png&quot; alt=&quot;image-20190525141308842&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190525152448892.png&quot; alt=&quot;image-20190525152448892&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;由1可知单位向量和它的导向量是垂直的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190525153743304.png&quot; alt=&quot;image-20190525153743304&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;标架及坐标变换&quot;&gt;标架及坐标变换&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190525154359653.png&quot; alt=&quot;image-20190525154359653&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;右手标架方向向量混合积=1:$(e_{1}, e_{2}, e_{3}) = 1$, 左右标架=-1&lt;/p&gt;
+
+&lt;p&gt;合同变换：空间中的点一一对应，且保持点和点之间的距离不变&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 25 May 2019 23:09:06 +0800</pubDate>
+        <link>http://localhost:4000/2019/05/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%AC%A7%E6%B0%8F%E7%A9%BA%E9%97%B4/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/05/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%AC%A7%E6%B0%8F%E7%A9%BA%E9%97%B4/</guid>
+        
+        <category>数学基础</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>时间序列分解与数据平滑及预测</title>
+        <description>&lt;head&gt;
+		&lt;script src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;h3 id=&quot;时间序列分解&quot;&gt;时间序列分解&lt;/h3&gt;
+
+&lt;p&gt;时间序列分解，即将一个时间序列分解为多个序列，是将时间序列转换为多个不同时间序列的数学过程。原始时间序列通常分为三个组件系列：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;季节性(Seasonality)：以固定时间段重复的模式。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;例如，一个网站在周末可能会收到更多的访问; 这会产生季节性(周期)为7天的数据；&lt;/p&gt;
+
+&lt;p&gt;也可能是某个电商平台的每天销售数据，那么这样数据的季节性(周期)是 365.25天。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;趋势(Trend)：指标的基本趋势。一个日益流行的网站应该显示出一个普遍的趋势；某个电商品类也有有自己的趋势。&lt;/li&gt;
+  &lt;li&gt;随机(Random)：也称为“噪音”，“不规则”或“余数(remainder)”，这是季节和趋势序列删除后原始时间序列的残差（residuals）；比如911事件对 对美国航空业的影响就是一个噪音，你很难预测他的产生。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;使用加法或乘法分解&quot;&gt;使用加法或乘法分解？&lt;/h4&gt;
+
+&lt;p&gt;需要判断当时间序列增加时季节性的大小是否会增加：
+澳大利亚啤酒生产 - 季节性变化(方差)看起来不变; 当时间序列值增加时它不会改变。我们应该使用加法模型。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190524205339323.png&quot; alt=&quot;image-20190524205339323&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;航空公司乘客数量 - 随着时间序列数量的增加，季节性变化(方差)也随之增加。这里我们应该使用乘法模型。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190524205353752.png&quot; alt=&quot;image-20190524205353752&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;加法模型：时间序列=季节性+趋势+随机&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;译注：如果时间序列的波峰波谷的差距一直差不多，就用加法模型。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;乘法模型：时间序列=趋势*季节性*随机&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;译注：如果时间序列的波峰波谷的差距随着时间推移而一直加大，就用乘法模型。&lt;/p&gt;
+
+&lt;h3 id=&quot;指数平滑的定义及公式&quot;&gt;指数平滑的定义及公式&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;产生背景：&lt;/strong&gt;指数平滑由布朗提出、他认为时间序列的态势具有稳定性或规则性，所以时间序列可被合理地顺势推延；他认为最近的过去态势，在某种程度上会持续的未来，所以将较大的权数放在最近的资料。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;基本原理：&lt;/strong&gt;指数平滑法是移动平均法中的一种，其特点在于给过去的观测值不一样的权重，即较近期观测值的权数比较远期观测值的权数要大。根据平滑次数不同，指数平滑法分为一次指数平滑法、二次指数平滑法和三次指数平滑法等。但它们的基本思想都是：预测值是以前观测值的加权和，且对不同的数据给予不同的权数，新数据给予较大的权数，旧数据给予较小的权数。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;指数平滑法的基本公式：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;$ S_{t} = a&lt;em&gt;y_{t} + (1-a)&lt;/em&gt;S_{t-1}$&lt;/p&gt;
+
+&lt;p&gt;其中：&lt;/p&gt;
+
+&lt;p&gt;•   $S_{t}$:时间t的平滑值；&lt;/p&gt;
+
+&lt;p&gt;•   $y_{t}$:时间t的实际值；&lt;/p&gt;
+
+&lt;p&gt;•   $S_{t-1}$:时间t-1的平滑值；&lt;/p&gt;
+
+&lt;p&gt;•   $a$:平滑常数，其取值范围为[0,1]&lt;/p&gt;
+
+&lt;p&gt;根据平滑次数不同，指数平滑法分为：一次指数平滑法、二次指数平滑和三次指数平滑法等。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;以下部分只有一次指数平滑预测目前已理解，另外两种只会调库
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;一次指数平滑预测&quot;&gt;一次指数平滑预测&lt;/h3&gt;
+
+&lt;p&gt;当时间数列无明显的趋势变化，可用一次指数平滑预测。其预测公式为：&lt;/p&gt;
+
+&lt;p&gt;$y^{t+1’}=a&lt;em&gt;y^{t}+(1-a)&lt;/em&gt;y^{t’} $&lt;/p&gt;
+
+&lt;p&gt;•    $y^{t+1’}$–t+1期的预测值，即本期（t期）的平滑值$S_{t}$ ；&lt;/p&gt;
+
+&lt;p&gt;•    $y^{t}$–t期的实际值；&lt;/p&gt;
+
+&lt;p&gt;•    $y^{t’}$–t期的预测值，即上期的平滑值$S_{t-1}$&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/一次指数.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Desktop/simingblog.github.io/images/posts/一次指数.png&quot; alt=&quot;一次指数&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;二次指数平滑预测&quot;&gt;二次指数平滑预测&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/二次指数.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Desktop/simingblog.github.io/images/posts/二次指数.png&quot; alt=&quot;二次指数&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;三次指数平滑预测&quot;&gt;三次指数平滑预测&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/三次指数.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Desktop/simingblog.github.io/images/posts/三次指数.png&quot; alt=&quot;三次指数&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 25 May 2019 04:28:06 +0800</pubDate>
+        <link>http://localhost:4000/2019/05/%E9%A2%84%E6%B5%8B%E7%AE%97%E6%B3%95-%E6%8C%87%E6%95%B0%E5%B9%B3%E6%BB%91%E6%B3%95/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/05/%E9%A2%84%E6%B5%8B%E7%AE%97%E6%B3%95-%E6%8C%87%E6%95%B0%E5%B9%B3%E6%BB%91%E6%B3%95/</guid>
+        
+        <category>python</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>基于DCT变换的JPEG图像压缩与解压</title>
+        <description>&lt;head&gt;
+		&lt;script src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;h3 id=&quot;什么是图像压缩&quot;&gt;什么是图像压缩&lt;/h3&gt;
+
+&lt;p&gt;目前常用的图像文件格式有十几种，其中JPEG格式由于占用空间小，图像质量高，而为用户广泛采用。JPEG即联合图像专家组（Joint Photographic Experts Group）,隶属于ISO国际标准化组织，主要负责定制静态数字图像的编码方法，即所谓的JPEG算子。她适用于各种不同类型、不同分辨率的彩色和黑白二值静止图像。现阶段，JPEG专家小组开发出2种压缩算法，2种熵编码方法以及4种编码模式，这里采用：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;压缩算法：&lt;/strong&gt;有损的离散余弦变化DCT(Discrete Cosine Transform)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;熵编码方法：&lt;/strong&gt;Huffman编码&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;编码模式：&lt;/strong&gt;基于DPCM，保证解码后完全精确恢复到原图像采样值&lt;/p&gt;
+
+&lt;h3 id=&quot;jpeg压缩过程&quot;&gt;JPEG压缩过程&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190513212844448.png&quot; alt=&quot;image-20190513212844448&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;1-颜色空间转换&quot;&gt;(1) 颜色空间转换&lt;/h4&gt;
+&lt;p&gt;这里采用&lt;strong&gt;YUV/YCbCr颜色空间&lt;/strong&gt;，采用YUV颜色空间的重要性是&lt;strong&gt;它的亮度信号Y和色度信号U、V是分离的（Y表示亮度，U(Cb)、V(Cr)表示色度，有时候分别又说表示色度和饱和度)。&lt;/strong&gt;如果只有Y信号分量而没有U、V分量，那么这样表示的图就是黑白灰度图。彩色电视采用YUV空间正是为了用亮度信号Y解决彩色电视机与黑白电视机的兼容问题，使黑白电视机也能接收彩色信号。
+电视信号在发射时，转换成YUV形式，接受时再还原成RGB三基色信号，由显像管显示（RGB-&amp;gt;YUV-&amp;gt;编码发送——YUV-&amp;gt;RGB-&amp;gt;显示）
+这里主要利用了HVS(Human Visual System)对亮度比色度更敏感的特点，而计算机系统没有人眼这样的识别功能，所以主要使用RGB三基色原理（世界中任一颜色都可以使用RGB以不同的权重联合起来表示）。&lt;/p&gt;
+
+&lt;h4 id=&quot;2-采样&quot;&gt;(2) 采样&lt;/h4&gt;
+&lt;p&gt;根据生物学研究表明，&lt;strong&gt;HVS对亮度比色度更敏感&lt;/strong&gt;。因此我们可以认为将彩色信息的清晰度较低些，这样可显著压缩色度所需带宽，也就是Y分量比Cb和Cr的分量重要的多。在图片格式国际标准BMP中，采用的RGB颜色空间三个分量就需要3个字节进行采样，也就是我们说的RGB888模式。&lt;strong&gt;在JPEG中主要采用411和422的采样方式&lt;/strong&gt;。（也就是在2X2的空间域中，本应总共需要4个Y,4个U，4个V,总共需要4+4+4=12字节，422采样意思为每4个像素单元有4个Y,2个U,2个V,此时只需要4+2+2=8字节，411则是6字节，相应的420类似。其中420格式广泛用于数字电视、会议电视、DVD中）&lt;/p&gt;
+
+&lt;p&gt;采用这样的采样方式，虽然损失了一定的精度，但是在HVS观察不到的前提下较少了数据量。&lt;/p&gt;
+
+&lt;p&gt;本次作业中我们采用411采样的方式。&lt;/p&gt;
+
+&lt;p&gt;(3、4) 分块&lt;/p&gt;
+
+&lt;h2 id=&quot;实验报告&quot;&gt;实验报告&lt;/h2&gt;
+
+&lt;h4 id=&quot;1500012820-严思明&quot;&gt;1500012820 严思明&lt;/h4&gt;
+
+&lt;p&gt;实验结果：&lt;/p&gt;
+
+&lt;p&gt;当前量化表下压缩后的图像：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190513213821623.png&quot; alt=&quot;image-20190513213821623&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;压缩率：&lt;/p&gt;
+
+&lt;p&gt;size(encode.b) / size(source.png) = 560856 / 1477654 = 0.38&lt;/p&gt;
+
+&lt;p&gt;这里误差图像直接用原图减去重建后图像：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190513214148984.png&quot; alt=&quot;image-20190513214148984&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;第二种量化表：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190513221200075.png&quot; alt=&quot;image-20190513221200075&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;压缩率：&lt;/p&gt;
+
+&lt;p&gt;3229191 / 1477654 = 2.19&lt;/p&gt;
+
+&lt;p&gt;误差图像：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190513221219012.png&quot; alt=&quot;image-20190513221219012&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;第三种量化表：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190513221612318.png&quot; alt=&quot;image-20190513221612318&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;压缩率：&lt;/p&gt;
+
+&lt;p&gt;732801 / 1477654 = 0.49&lt;/p&gt;
+
+&lt;p&gt;误差图像：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190513221634304.png&quot; alt=&quot;image-20190513221634304&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;第四种量化表：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190513221904248.png&quot; alt=&quot;image-20190513221904248&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;压缩率：&lt;/p&gt;
+
+&lt;p&gt;3229191 / 1477654 = 2.19&lt;/p&gt;
+
+&lt;p&gt;误差图像：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/Users/dantes/Library/Application Support/typora-user-images/image-20190513221923781.png&quot; alt=&quot;image-20190513221923781&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 13 May 2019 23:14:06 +0800</pubDate>
+        <link>http://localhost:4000/2019/05/%E5%9F%BA%E4%BA%8EDCT%E5%8F%98%E6%8D%A2%E7%9A%84JPEG%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/05/%E5%9F%BA%E4%BA%8EDCT%E5%8F%98%E6%8D%A2%E7%9A%84JPEG%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B/</guid>
+        
+        <category>PKU</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>表达式与赋值语句</title>
+        <description>&lt;p&gt;本章主要讨论了命令式语言的表达式和赋值语句。&lt;/p&gt;
+
+&lt;p&gt;结合性：&lt;/p&gt;
+
+&lt;p&gt;说白了，许多操作符的优先级都是相同的。这时，操作符的结合性就开始发挥作用了。在表达式中如果有几个优先级相同的操作符，结合性就起仲裁的作用，由它决定哪个操作符先执行。先执行，可以看做是加上括号。比如，右结合（从右到左），那就是，把右边的运算用括号先括起来，再与左边的进行计算，这样自然是先执行右边的了。  比如   int a,b=1,c=2;  a=b=c;  这里’=’的结合性是从右到左。 故a=b=c; 可变为a=(b=c);  即a=2。&lt;/p&gt;
+</description>
+        <pubDate>Thu, 09 May 2019 23:14:06 +0800</pubDate>
+        <link>http://localhost:4000/2019/05/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E8%B5%8B%E5%80%BC%E8%AF%AD%E5%8F%A5/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/05/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E8%B5%8B%E5%80%BC%E8%AF%AD%E5%8F%A5/</guid>
+        
+        <category>PKU</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>最大似然估计，最大后验概率估计</title>
+        <description>&lt;head&gt;
+		&lt;script src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;p&gt;最大似然估计（Maximum likelihood estimation, 简称&lt;strong&gt;MLE&lt;/strong&gt;）和最大后验概率估计(Maximum a posteriori estimation, 简称&lt;strong&gt;MAP&lt;/strong&gt;）是很常用的两种参数估计方法，如果不理解这两种方法的思路，很容易弄混它们。下文将详细说明MLE和MAP的思路与区别。&lt;/p&gt;
+
+&lt;p&gt;在研究这两个概念之前，我们先从概率和统计的区别讲起。&lt;/p&gt;
+
+&lt;h3 id=&quot;概率和统计的区别&quot;&gt;概率和统计的区别&lt;/h3&gt;
+
+&lt;p&gt;概率（probabilty）和统计（statistics）看似两个相近的概念，其实研究的问题刚好相反。
+概率研究的问题是，已知一个模型和参数，怎么去预测这个模型产生的结果的特性（例如均值，方差，协方差等等）。 举个例子，我想研究怎么养猪（模型是猪），我选好了想养的品种、喂养方式、猪棚的设计等等（选择参数），我想知道我养出来的猪大概能有多肥，肉质怎么样（预测结果）。&lt;/p&gt;
+
+&lt;p&gt;统计研究的问题则相反。统计是，有一堆数据，要利用这堆数据去预测模型和参数。仍以猪为例。现在我买到了一堆肉，通过观察和判断，我确定这是猪肉（这就确定了模型。在实际研究中，也是通过观察数据推测模型是／像高斯分布的、指数分布的、拉普拉斯分布的等等），然后，可以进一步研究，判定这猪的品种、这是圈养猪还是跑山猪还是网易猪，等等（推测模型参数）。&lt;/p&gt;
+
+&lt;p&gt;一句话总结：&lt;strong&gt;概率是已知模型和参数，推数据。统计是已知数据，推模型和参数。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;显然，MLE和MAP都是统计领域的问题。它们都是用来推测参数的方法。为什么会存在着两种不同方法呢？ 这需要理解贝叶斯思想。我们来看看贝叶斯公式。&lt;/p&gt;
+
+&lt;h3 id=&quot;贝叶斯公式&quot;&gt;贝叶斯公式&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;看完博客后对贝叶斯公式感觉还是理解的不透，希望日后能够有新的理解
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;$ P(A丨B) = \frac{P(B丨A)P(A)}{P(B)} $   【式1】&lt;/p&gt;
+
+&lt;p&gt;把B展开，可以写成：&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;P(A丨B) = \frac{P(B丨A)P(A)}{P(B丨A)P(A)+P(B丨～A)P(～A)}&lt;/script&gt;   【式2】&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$P(A 丨 B)$是A的后验概率，&lt;script type=&quot;math/tex&quot;&gt;P(A)&lt;/script&gt;是A的先验概率&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这个式子就很有意思了。&lt;/p&gt;
+
+&lt;p&gt;想想这个情况。一辆汽车（或者电瓶车）的警报响了，你通常是什么反应？有小偷？撞车了？ 不。。 你通常什么反应都没有。因为汽车警报响一响实在是太正常了！每天都要发生好多次。本来，汽车警报设置的功能是，出现了异常情况，需要人关注。然而，由于虚警实在是太多，人们渐渐不相信警报的功能了。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;贝叶斯公式就是在描述，你有多大把握能相信一件证据？（how much you can trust the evidence）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;我们假设响警报的目的就是想说汽车被砸了。把A计作“汽车被砸了”，B计作“警报响了”，带进贝叶斯公式里看。我们想求等式左边发生 A丨B 的概率，这是在说警报响了，汽车也确实被砸了。汽车被砸引起（trigger）警报响，即B丨A。但是，也有可能是汽车被小孩子皮球踢了一下、被行人碰了一下等其他原因（统统计作～A），其他原因引起汽车警报响了，即B丨～A。那么，现在突然听见警报响了，这时汽车已经被砸了的概率是多少呢（这即是说，警报响这个&lt;em&gt;证据&lt;/em&gt;有了，多大把握能相信它确实是在报警说汽车被砸了）？想一想，应当这样来计算。用警报响起、汽车也被砸了这事件的数量，除以响警报事件的数量（这即【式1】）。进一步展开，即警报响起、汽车也被砸了的事件的数量，除以警报响起、汽车被砸了的事件数量加上警报响起、汽车没被砸的事件数量（这即【式2】）。&lt;/p&gt;
+
+&lt;p&gt;可能有点绕，请稍稍想一想。&lt;/p&gt;
+
+&lt;p&gt;再思考【式2】。想让P(A丨B)=1，即警报响了，汽车一定被砸了，该怎么做呢？让P(B～A)P(～A)=0即可。很容易想清楚，假若让P(～A)=0，即杜绝了汽车被球踢、被行人碰到等等其他所有情况，那自然，警报响了，只剩下一种可能——汽车被砸了。这即是提高了响警报这个&lt;em&gt;证据&lt;/em&gt;的说服力。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;从这个角度总结贝叶斯公式：做判断的时候，要考虑所有的因素。&lt;/strong&gt; 老板骂你，不一定是你把什么工作搞砸了，可能只是他今天出门前和太太吵了一架。&lt;/p&gt;
+
+&lt;p&gt;再思考【式2】。观察【式2】右边的分子，P/(B丨A)为汽车被砸后响警报的概率。姑且仍为这是1吧。但是，若P(A)很小，即汽车被砸的概率本身就很小，则P(B丨A)P(A)仍然很小，即【式2】右边分子仍然很小，P(A丨B)还是大不起来。 这里，P(A)即是常说的先验概率，如果A的先验概率很小，就算P(B丨A)较大，可能A的后验概率P(A丨B)还是不会大（假设P(B丨～A)P(～A)不变的情况下）。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;从这个角度思考贝叶斯公式：一个本来就难以发生的事情，就算出现某个证据和他强烈相关，也要谨慎。证据很可能来自别的虽然不是很相关，但发生概率较高的事情。&lt;/strong&gt; 发现刚才写的代码编译报错，可是我今天状态特别好，这语言我也很熟悉，犯错的概率很低。因此觉得是编译器出错了。 ————别，还是先再检查下自己的代码吧。&lt;/p&gt;
+
+&lt;p&gt;以上就是对贝叶斯公式的一点浅层的理解，下面回到最大似然估计。&lt;/p&gt;
+
+&lt;h3 id=&quot;似然函数&quot;&gt;似然函数&lt;/h3&gt;
+
+&lt;p&gt;似然（likelihood）这个词其实和概率（probability）是差不多的意思，Colins字典这么解释：The likelihood of something happening is how likely it is to happen. 你把likelihood换成probability，这解释也读得通。但是在统计里面，似然函数和概率函数却是两个不同的概念（其实也很相近就是了）。&lt;/p&gt;
+
+&lt;p&gt;对于这个函数：&lt;/p&gt;
+
+&lt;p&gt;$P(x丨θ)$&lt;/p&gt;
+
+&lt;p&gt;输入有两个：x表示某一个具体的数据；θ表示模型的参数。&lt;/p&gt;
+
+&lt;p&gt;如果θ是已知确定的，x是变量，这个函数叫做概率函数(probability function)，它描述对于不同的样本点x，其出现概率是多少。&lt;/p&gt;
+
+&lt;p&gt;如果x是已知确定的，θ是变量，这个函数叫做似然函数(likelihood function), 它描述对于不同的模型参数，出现x这个样本点的概率是多少。&lt;/p&gt;
+
+&lt;p&gt;这有点像“一菜两吃”的意思。其实这样的形式我们以前也不是没遇到过。例如，$f(x,y)=x^y$
+, 即x的y次方。如果x是已知确定的(例如x=2)，这就是$f(y)=2^y$, 这是指数函数。 如果y是已知确定的(例如y=2)，这就是$f(x)=x^2$，这是二次函数。同一个数学形式，从不同的变量角度观察，可以有不同的名字。&lt;/p&gt;
+
+&lt;p&gt;这么说应该清楚了吧？ 如果还没讲清楚，别急，下文会有具体例子。&lt;/p&gt;
+
+&lt;p&gt;首先看一下最大似然估计(MLE)。&lt;/p&gt;
+
+&lt;h3 id=&quot;最大似然估计mle&quot;&gt;最大似然估计(MLE)&lt;/h3&gt;
+
+&lt;p&gt;最大似然估计&lt;strong&gt;就是利用已知的样本结果信息，反推最具有可能（最大概率）导致这些样本结果出现的模型参数值！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;换句话说，极大似然估计提供了一种给定观察数据来评估模型参数的方法，即：“模型已定，参数未知”。&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;最大似然估计中采样需满足一个重要的假设，就是所有的采样都是独立同分布的。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;例子一&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;p&gt;别人博客的一个例子。&lt;/p&gt;
+
+&lt;p&gt;假如有一个罐子，里面有黑白两种颜色的球，数目多少不知，两种颜色的比例也不知。我  们想知道罐中白球和黑球的比例，但我们不能把罐中的球全部拿出来数。现在我们可以每次任意从已经摇匀的罐中拿一个球出来，记录球的颜色，然后把拿出来的球   再放回罐中。这个过程可以重复，我们可以用记录的球的颜色来估计罐中黑白球的比例。假如在前面的一百次重复记录中，有七十次是白球，请问罐中白球所占的比例最有可能是多少？&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;很多人马上就有答案了：70%。而其后的理论支撑是什么呢？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;我们假设罐中白球的比例是p，那么黑球的比例就是1-p。因为每抽一个球出来，在记录颜色之后，我们把抽出的球放回了罐中并摇匀，&lt;strong&gt;所以每次抽出来的球的颜 色服从同一独立分布。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这里我们把一次抽出来球的颜色称为一次抽样。题目中在一百次抽样中，七十次是白球的,三十次为黑球事件的概率是P(样本结果丨Model)。&lt;/p&gt;
+
+&lt;p&gt;如果第一次抽象的结果记为x1,第二次抽样的结果记为x2….那么样本结果为(x1,x2…..,x100)。这样，我们可以得到如下表达式：&lt;/p&gt;
+
+&lt;p&gt;P(样本结果丨Model)&lt;/p&gt;
+
+&lt;p&gt;　　= P(x1,x2,…,x100丨Model)&lt;/p&gt;
+
+&lt;p&gt;　　= P(x1丨M)P(x2丨M)…P(x100丨M) （&lt;strong&gt;因为这里独立同分布&lt;/strong&gt;）&lt;/p&gt;
+
+&lt;p&gt;　　= p^70(1-p)^30.&lt;/p&gt;
+
+&lt;p&gt;好的，我们已经有了观察样本结果出现的概率表达式了。那么我们要求的模型的参数，也就是求的式中的p。&lt;/p&gt;
+
+&lt;p&gt;可以看出p有无数种可能的选择，既然是这样，&lt;strong&gt;最大似然估计就是让这个样本结果出现的可能性最大，这样就是对p求导即可&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;例子二&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;p&gt;假设我们要统计全国人民的年均收入，首先假设这个收入服从服从正态分布，但是该分布的均值与方差未知。我们没有人力与物力去统计全国每个人的收入。我们国家有10几亿人口呢？那么岂不是没有办法了？&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;不不不，有了极大似然估计之后，我们可以采用嘛！我们比如选取一个城市，或者一个乡镇的人口收入，作为我们的观察样本结果。然后通过最大似然估计来获取上述假设中的正态分布的参数。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;有了参数的结果后，我们就可以知道该正态分布的期望和方差了。也就是我们通过了一个小样本的采样，反过来知道了全国人民年收入的一系列重要的数学指标量！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;那么我们就知道了极大似然估计的核心关键就是对于一些情况，&lt;strong&gt;样本太多，无法得出分布的参数值，可以采样小样本后，利用极大似然估计获取假设中分布的参数值。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;最大后验概率估计map&quot;&gt;最大后验概率估计(MAP)&lt;/h3&gt;
+
+&lt;p&gt;假设我们做实验抛了十次硬币，发现7次硬币正面向上，最大似然估计认为正面向上的概率是0.7。（ummm..这非常直观合理，对吧？）&lt;/p&gt;
+
+&lt;p&gt;且慢，一些人可能会说，硬币一般都是均匀的啊！ 就算你做实验发现结果是“反正正正正反正正正反”，我也不信θ=0.7。&lt;/p&gt;
+
+&lt;p&gt;这里就包含了贝叶斯学派的思想了——要考虑先验概率。 为此，引入了&lt;strong&gt;最大后验概率估计&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;最大似然估计是求参数&lt;em&gt;θ&lt;/em&gt;, 使似然函数$P(x0丨θ)$最大。最大后验概率估计则是想求&lt;em&gt;θ&lt;/em&gt;使$P(x0丨θ)P(θ)$最大。求得的&lt;em&gt;θ&lt;/em&gt;不单单让似然函数大，&lt;em&gt;θ&lt;/em&gt;自己出现的先验概率也得大。 （这有点像正则化里加惩罚项的思想，不过正则化里是利用加法，而MAP里是利用乘法）&lt;/p&gt;
+
+&lt;p&gt;MAP其实是在最大化&lt;script type=&quot;math/tex&quot;&gt;P(θ丨x0) = \frac{P(x0丨θ)P(θ)}{P(x0)}&lt;/script&gt;,所以叫最大后验概率估计。不过因为x0是确定的，P(x0)是一个已知值，所以去掉了分母P(x0)（假设“投10次硬币”是一次实验，实验做了1000次，“反正正正正反正正正反”出现了n次，则P(x0)=n/1000。总之，这是一个可以由数据集得到的值）。&lt;/p&gt;
+
+&lt;p&gt;对于投硬币的例子来看，我们认为（”先验地知道“）&lt;em&gt;θ&lt;/em&gt;取0.5的概率很大，取其他值的概率小一些。我们用一个高斯分布来具体描述我们掌握的这个先验知识，例如假设P(θ)为均值0.5，方差0.1的高斯函数，这样，$P(x0丨θ)P(θ)$&lt;strong&gt;的最大值就不再是0.7,而是在θ=0.558&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;但如果做了1000次实验，其中700次正面向上，那么此时的θ就在0.696取得最大值。&lt;/p&gt;
+</description>
+        <pubDate>Tue, 23 Apr 2019 23:14:06 +0800</pubDate>
+        <link>http://localhost:4000/2019/04/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/04/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1/</guid>
+        
+        <category>Probability</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>隐马尔可夫模型</title>
+        <description>&lt;h4 id=&quot;一实验开发环境&quot;&gt;一、实验（开发）环境&lt;/h4&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;HMM的发射概率一定是离散的&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Mon, 22 Apr 2019 23:14:06 +0800</pubDate>
+        <link>http://localhost:4000/2019/04/%E9%9A%90%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E6%A8%A1%E5%9E%8B/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/04/%E9%9A%90%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E6%A8%A1%E5%9E%8B/</guid>
+        
+        <category>Probability</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

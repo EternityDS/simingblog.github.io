@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>RISCV模拟器实现</title>
+  <meta name="description" content="一、实验（开发）环境">
+  <meta name="author" content="leopardpan">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RISCV模拟器实现">
+  <meta name="twitter:description" content="一、实验（开发）环境">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="RISCV模拟器实现">
+  <meta property="og:description" content="一、实验（开发）环境">
+  
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link href="/images/favicon.png" rel="shortcut icon" type="image/png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="canonical" href="http://localhost:4000/2019/04/RISCV%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0/">
+  <link rel="alternate" type="application/rss+xml" title="Siming Yan" href="http://localhost:4000/feed.xml">
+  
+  <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
+
+<!-- 站点统计 -->
+  <script 
+  async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>  
+
+<!-- 百度统计 -->
+  
+  <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?xxxx";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+  </script>
+  
+
+<!-- google 统计 -->
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'xxxx', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9005224472374751",
+    enable_page_level_ads: true
+  });
+</script>
+
+</head>
+
+
+  <body>
+
+    <span class="mobile btn-mobile-menu">        
+      <div class="nav_container">
+         <nav class="nav-menu-item" style = "float:right">
+            <i class="nav-menu-item">
+              <a href="/#blog" title="" class="blog-button">  博客主页
+              </a>
+            </i>
+            
+                <i class="nav-menu-item">
+
+                  <a href="/archive" title="archive" class="btn-mobile-menu__icon">
+                      所有文章
+                  </a>
+                </i>
+            
+                <i class="nav-menu-item">
+
+                  <a href="/tags" title="tags" class="btn-mobile-menu__icon">
+                      标签
+                  </a>
+                </i>
+            
+                <i class="nav-menu-item">
+
+                  <a href="/about" title="about" class="btn-mobile-menu__icon">
+                      关于我
+                  </a>
+                </i>
+            
+          </nav>
+      </div>
+    </span>
+    
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url('/images/background-cover.jpg')">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <!-- 头像效果-start -->
+        <div class="ih-item circle effect right_to_left">            
+            <a href="/#blog" title="前往 Siming Yan 的主页" class="blog-button">
+                <div class="img"><img src="/images/avatar.jpg" alt="img"></div>
+                <div class="info">
+                    <div class="info-back">
+                        <h2> 
+                            
+                                simingyan
+                            
+                        </h2>
+                        <p>
+                           
+                                Graphics PhD Student
+                            
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- 头像效果-end -->
+        <h1 class="panel-cover__title panel-title"><a href="/#blog" title="link to homepage for Siming Yan" class="blog-button">Siming Yan</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">个人博客</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">欢迎来到我的个人博客~</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+        
+        
+
+        <div class="navigation-wrapper">
+          <div>
+            <nav class="cover-navigation cover-navigation--primary">
+              <ul class="navigation">
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客主页</a></li>
+                
+                  <li class="navigation__item"><a href="/archive" title="archive">所有文章</a></li>
+                
+                  <li class="navigation__item"><a href="/tags" title="tags">标签</a></li>
+                
+                  <li class="navigation__item"><a href="/about" title="about">关于我</a></li>
+                
+              </ul>
+            </nav>
+          </div>          
+        </div>
+
+
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="panel-cover--overlay cover-clear"></div>
+    
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <h1 class="post-title">RISCV模拟器实现</h1>
+    <div class="post-meta">
+      <img src="/images/calendar.png" width="20px"/> 
+      <time datetime="2019-04-12 18:31:06 +0800" itemprop="datePublished" class="post-meta__date date">2019-04-12</time>  
+         
+      <span id="busuanzi_container_page_pv"> | 阅读：<span id="busuanzi_value_page_pv"></span>次</span>
+    </p>
+    </div>
+  </header>
+
+  <section class="post">
+    <h4 id="一实验开发环境">一、实验（开发）环境</h4>
+
+<p>下载并安装了UCBerkeley提供的RISCV-toolchain，Github：<a href="https://github.com/riscv/riscv-tools">https://github.com/riscv/riscv-tools</a>，注意当前版本的repo已不包含toolchain,需要git checkout回某个旧版本。</p>
+
+<p>利用toolchain编译Lab1当中的测试程序生成elf文件，并用qemu模拟器测试elf文件的正确性。</p>
+
+<h4 id="二设计概述">二、设计概述</h4>
+
+<p>本次lab主要完成了一个模拟器，可以完成解析elf文件，并执行其中指令（取指、译码、执行、回写）的功能。</p>
+
+<h4 id="三具体设计和实现">三、具体设计和实现</h4>
+
+<h5 id="可执行文件的装载初始化和存储接口">可执行文件的装载、初始化和存储接口</h5>
+
+<p>本lab中内存模型为一维线性寻址内存，由一个数组<code class="highlighter-rouge">unsigned int memory[MAX]={0}</code>来模拟内存。</p>
+
+<p>elf文件的格式如下图所示：</p>
+
+<p><img src="/Users/dantes/Library/Application Support/typora-user-images/image-20190412085615029.png" alt="image-20190412085615029" /></p>
+
+<p>其中比较重要的部分是text段，通过segment header中的type判断。这里用<code class="highlighter-rouge">segment[20][3]</code>保存每个segment中的代码段。同时还要设置程序入口地址：在符号表中main的位置，以及全局指针：在符号表中的__global_pointer$位置。</p>
+
+<ul>
+  <li>以上部分在<code class="highlighter-rouge">Read_Elf.cpp</code>中实现</li>
+</ul>
+
+<p><code class="highlighter-rouge">Simulation.cpp</code>为核心代码，从main函数起步，程序首先读入一个elf文件名filename，并对其进行解析，得到代码入口地址<code class="highlighter-rouge">main</code>，数据入口地址<code class="highlighter-rouge">section header name .data</code>，全局数据指针gp<code class="highlighter-rouge">__global_pointer$</code>。同时加载代码段到相应的内存空间中<code class="highlighter-rouge">load_memory()</code></p>
+
+<p>初始化PC为<code class="highlighter-rouge">entry&gt;&gt;2</code>，因为地址为四子节对齐。</p>
+
+<h5 id="指令语义的解析和控制信号的处理">指令语义的解析和控制信号的处理</h5>
+
+<p>然后开始模拟执行指令的过程。</p>
+
+<h6 id="取指">取指</h6>
+
+<p>结构体<code class="highlighter-rouge">IFID</code>保存指令和pc位置，<code class="highlighter-rouge">IF_ID_old</code>用于可能出现的系统调用或jump的情况。</p>
+
+<p><img src="/Users/dantes/Library/Application Support/typora-user-images/image-20190412101547630.png" alt="image-20190412101547630" /></p>
+
+<h6 id="译码">译码</h6>
+
+<p>从greencard里可以得到所有指令每个位的含义，这里通过<code class="highlighter-rouge">getbit()</code>函数对指令进行切分：</p>
+
+<p><img src="/Users/dantes/Library/Application Support/typora-user-images/image-20190412162906467.png" alt="image-20190412162906467" /></p>
+
+<p>然后通过OP, fuc3, fuc7, fuc6判断是哪一个指令，然后设置参数。<strong>注意其中乘法除法需要额外的运算时间，所以total_clock需要更新。</strong></p>
+
+<p>这个部分我基本实现了所有greencard中展示的指令，参数设置比较繁琐，可能有一些小的bug还未发现，但是从最后的结果看影响应该不大。</p>
+
+<h5 id="执行">执行</h5>
+
+<p>执行过程主要完成了ALU的运算，又是繁琐的参数设置和运算，需要非常细心。</p>
+
+<h5 id="访存">访存</h5>
+
+<p>访存指令读写内存在这部分完成，在上一步中从<code class="highlighter-rouge">ALUout</code>中得到内存地址，需要写的内容在rt寄存器中。不同的指令读写不同长度的内容，在<code class="highlighter-rouge">ctrl_read, ctrl_write</code>中保存。</p>
+
+<h5 id="回写">回写</h5>
+
+<p>将运算结果写回寄存器，设置对应参数：</p>
+
+<p><img src="/Users/dantes/Library/Application Support/typora-user-images/image-20190413092343916.png" alt="image-20190413092343916" /></p>
+
+<h4 id="四功能测试和性能测试">四、功能测试和性能测试</h4>
+
+<h5 id="运行测试程序给出动态执行的指令数-共5个定点程序">运行测试程序，给出动态执行的指令数。 （共5个定点程序）</h5>
+
+<p>因为编译过程可能有些小问题，目前仍未解决bug，部分测试程序里包含了greencard中未出现的指令，已经尝试了各种编译方法得到纯的rv64i指令集，但仍然有问题。不过我通过debug得到了未命名指令的信息，更新在下表中，同时我计算了在遇到未知指令前的各个参数。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>script</th>
+      <th>instruction number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>qsort</td>
+      <td>17543, error message: <code class="highlighter-rouge">undefined Opcode 7f</code></td>
+    </tr>
+    <tr>
+      <td>add</td>
+      <td>273</td>
+    </tr>
+    <tr>
+      <td>double-float</td>
+      <td>134, error message: <code class="highlighter-rouge">undefined OP_LW instruction func3: 4</code></td>
+    </tr>
+    <tr>
+      <td>mul-div</td>
+      <td>171, error message: <code class="highlighter-rouge">undefined OP_IW instruction func3: 5</code></td>
+    </tr>
+    <tr>
+      <td>simple-function</td>
+      <td>288</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="运行测试程序给出执行周期数并计算平均cpi-共5个定点程序">运行测试程序，给出执行周期数，并计算平均CPI。 （共5个定点程序）</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>script</th>
+      <th>CPI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>qsort</td>
+      <td>1.65385, error message: <code class="highlighter-rouge">undefined Opcode 7f</code></td>
+    </tr>
+    <tr>
+      <td>add</td>
+      <td>1.95238</td>
+    </tr>
+    <tr>
+      <td>double-float</td>
+      <td>1.53731, error message: <code class="highlighter-rouge">undefined OP_LW instruction func3: 4</code></td>
+    </tr>
+    <tr>
+      <td>mul-div</td>
+      <td>1.98830, error message: <code class="highlighter-rouge">undefined OP_IW instruction func3: 5</code></td>
+    </tr>
+    <tr>
+      <td>simple-function</td>
+      <td>1.92014</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="请你模拟的流水线处理器中因不同类型的冒险而发生的停顿进行统计并打印数据和分析-共5个测试程序">请你模拟的流水线处理器中因不同类型的冒险而发生的停顿进行统计，并打印数据和分析。 （共5个测试程序）</h5>
+
+<p>共有两类冒险：</p>
+
+<ol>
+  <li>
+    <p>数据冒险:由于数据相关导致的冒险，如果一个寄存器的值被后面的指令使用，则需要等前 一条指令写回后才能获取正确的该寄存器的值。</p>
+  </li>
+  <li>
+    <p>控制冒险:如果跳转预测错误，会导致错误的取指，这就是控制冒险。 比如：beq指令</p>
+  </li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>script</th>
+      <th>数据冒险</th>
+      <th>控制冒险</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>qsort</td>
+      <td>17403</td>
+      <td>2911</td>
+    </tr>
+    <tr>
+      <td>add</td>
+      <td>128</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>double-float</td>
+      <td>37</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>mul-div</td>
+      <td>85</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>simple-function</td>
+      <td>131</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+
+
+  </section>
+</article>
+
+<section>
+
+            <div class="content-play">
+              <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下">打赏一个呗</a></p>
+              <div class="hide_box-play"></div>
+              <div class="shang_box-play">
+                <a class="shang_close-play" href="javascript:void(0)" onclick="dashangToggle()" title="关闭"><img src="/images/payimg/close.jpg" alt="取消" /></a>
+                <div class="shang_tit-play">
+                  <p>感谢您的支持，我会继续努力的!</p>
+                </div>
+                <div class="shang_payimg">
+                    <img src="/images/payimg/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+                </div>
+              <div class="shang_payimg">    
+                    <img src="/images/payimg/weipayimg.jpg" alt="扫码支持" title="扫一扫" />
+                </div>
+                <div class="pay_explain">扫码打赏，你说多少就多少</div>
+                <div class="shang_payselect">
+                  <div class="pay_item checked" data-id="alipay">
+                    <span class="pay_logo"><img src="/images/payimg/alipay.jpg" alt="支付宝" /></span>
+                  </div>
+                  <div class="pay_item" data-id="weipay">
+                    <span class="pay_logo"><img src="/images/payimg/wechat.jpg" alt="微信" /></span>
+                  </div>
+                </div>
+                <div class="shang_info-play">
+                  <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+                </div>
+              </div>
+            </div>
+            <script type="text/javascript">
+            function dashangToggle(){
+              $(".hide_box-play").fadeToggle();
+              $(".shang_box-play").fadeToggle();
+            }
+            </script>
+
+            <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';"></div>
+
+            <style type="text/css">
+              .content-play{width:80%;margin-top: 20px;margin-bottom: 10px;height:40px;}
+              .hide_box-play{z-index:999;filter:alpha(opacity=50);background:#666;opacity: 0.5;-moz-opacity: 0.5;left:0;top:0;height:99%;width:100%;position:fixed;display:none;}
+              .shang_box-play{width:540px;height:540px;padding:10px;background-color:#fff;border-radius:10px;position:fixed;z-index:1000;left:50%;top:50%;margin-left:-280px;margin-top:-280px;border:1px dotted #dedede;display:none;}
+              .shang_box-play img{border:none;border-width:0;}
+              .dashang{display:block;width:100px;margin:5px auto;height:25px;line-height:25px;padding:10px;background-color:#E74851;color:#fff;text-align:center;text-decoration:none;border-radius:10px;font-weight:bold;font-size:16px;transition: all 0.3s;}
+              .dashang:hover{opacity:0.8;padding:15px;font-size:18px;}
+              .shang_close-play{float:right;display:inline-block;
+                margin-right: 10px;margin-top: 20px;
+              }
+              .shang_logo{display:block;text-align:center;margin:20px auto;}
+              .shang_tit-play{width: 100%;height: 75px;text-align: center;line-height: 66px;color: #a3a3a3;font-size: 16px;background: url('/images/payimg/cy-reward-title-bg.jpg');font-family: 'Microsoft YaHei';margin-top: 7px;margin-right:2px;}
+              .shang_tit-play p{color:#a3a3a3;text-align:center;font-size:16px;}
+              .shang_payimg{width:140px;padding:10px;padding-left: 80px; /*border:6px solid #EA5F00;**/margin:0 auto;border-radius:3px;height:140px;display:inline-block;}
+              .shang_payimg img{display:inline-block;margin-right:10px;float:left;text-align:center;width:140px;height:140px; }
+              .pay_explain{text-align:center;margin:10px auto;font-size:12px;color:#545454;}
+              .shang_payselect{text-align:center;margin:0 auto;margin-top:40px;cursor:pointer;height:60px;width:500px;margin-left:110px;}
+              .shang_payselect .pay_item{display:inline-block;margin-right:140px;float:left;}
+              .shang_info-play{clear:both;}
+              .shang_info-play p,.shang_info-play a{color:#C3C3C3;text-align:center;font-size:12px;text-decoration:none;line-height:2em;}
+            </style>
+
+       <ul class="pager">
+        
+        <li class="previous">
+            <a href="/2019/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%82/" data-toggle="tooltip" data-placement="top" title="计算机网络-网络层笔记">上一篇：  <span>计算机网络-网络层笔记</span>
+            </a>
+        </li>
+        
+        
+        <li class="next">
+            <a href="/2019/04/python-set-list%E7%94%A8%E6%B3%95/" data-toggle="tooltip" data-placement="top" title="python-set-list用法">下一篇：  <span>python-set-list用法</span>
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+<section class="post-comments">
+
+  
+    <div id="disqus_thread"></div>
+    <script>
+    
+    var disqus_config = function () {
+        this.page.url = "http://localhost:4000/2019/04/RISCV%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0/";
+        this.page.identifier = "/2019/04/RISCV%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0/";
+    };
+    var disqus_shortname = 'leopard';
+    
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>要查看<a href="http://disqus.com/?ref_noscript"> Disqus </a>评论，请启用 JavaScript</noscript>
+    
+
+  
+
+</section>
+
+
+            <section class="footer">
+    <footer>
+        <div class = "footer_div">  
+        <nav class="cover-navigation navigation--social">
+          <ul class="navigation">
+
+          
+          <!-- Github -->
+          <li class="navigation__item_social">
+            <a href="https://github.com/SimingYan" title="@SimingYan 的 Github" target="_blank">
+              <div class="footer-social-icon" style="background:url(/images/github.png);"></div>
+            </a>
+          </li>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+          
+          <!-- Email -->
+          <li class="navigation__item_social">
+            <a href="mailto:simingyanpku@gmail.com" title="Contact me">
+              <div class="footer-social-icon" style="background:url(/images/email.png);"></div>
+            </a>
+          </li>
+          
+          
+          <!-- RSS -->
+          <li class="navigation__item_social">
+            <a href="/feed.xml" rel="author" title="RSS" target="_blank">
+              <div class="footer-social-icon" style="background:url(/images/rss.png);"></div>
+              <span class="label">RSS</span>
+            </a>
+          </li>
+
+          </ul>
+        </nav>
+
+        </div>
+
+        <div class = "footer_div">  
+           <p class="copyright text-muted">
+            Copyright &copy; Siming Yan 2019 Theme by <a href="http://baixin.io/">leopardpan</a> |
+            <iframe
+                style="margin-left: 2px; margin-bottom:-5px;"
+                frameborder="0" scrolling="0" width="91px" height="20px"
+                src="https://ghbtns.com/github-btn.html?user=leopardpan&repo=leopardpan.github.io&type=star&count=true" >
+            </iframe>
+            </p>
+        	<div align="right">
+    			<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+          <!-- 访问统计 -->
+          <span id="busuanzi_container_site_pv">
+            本站总访问量
+            <span id="busuanzi_value_site_pv"></span>次
+          </span>
+
+        </div>
+        <div>
+    </footer>
+</section>
+
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript" src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+  </body>
+
+</html>

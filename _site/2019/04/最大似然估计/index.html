@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>最大似然估计，最大后验概率估计</title>
+  <meta name="description" content="		    ">
+  <meta name="author" content="leopardpan">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="最大似然估计，最大后验概率估计">
+  <meta name="twitter:description" content="		    ">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="最大似然估计，最大后验概率估计">
+  <meta property="og:description" content="		    ">
+  
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link href="/images/favicon.png" rel="shortcut icon" type="image/png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="canonical" href="http://localhost:4000/2019/04/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1/">
+  <link rel="alternate" type="application/rss+xml" title="Siming Yan" href="http://localhost:4000/feed.xml">
+  
+  <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
+
+<!-- 站点统计 -->
+  <script 
+  async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>  
+
+<!-- 百度统计 -->
+  
+  <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?xxxx";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+  </script>
+  
+
+<!-- google 统计 -->
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'xxxx', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9005224472374751",
+    enable_page_level_ads: true
+  });
+</script>
+
+</head>
+
+
+  <body>
+
+    <span class="mobile btn-mobile-menu">        
+      <div class="nav_container">
+         <nav class="nav-menu-item" style = "float:right">
+            <i class="nav-menu-item">
+              <a href="/#blog" title="" class="blog-button">  博客主页
+              </a>
+            </i>
+            
+                <i class="nav-menu-item">
+
+                  <a href="/archive" title="archive" class="btn-mobile-menu__icon">
+                      所有文章
+                  </a>
+                </i>
+            
+                <i class="nav-menu-item">
+
+                  <a href="/tags" title="tags" class="btn-mobile-menu__icon">
+                      标签
+                  </a>
+                </i>
+            
+                <i class="nav-menu-item">
+
+                  <a href="/about" title="about" class="btn-mobile-menu__icon">
+                      关于我
+                  </a>
+                </i>
+            
+          </nav>
+      </div>
+    </span>
+    
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url('/images/background-cover.jpg')">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <!-- 头像效果-start -->
+        <div class="ih-item circle effect right_to_left">            
+            <a href="/#blog" title="前往 Siming Yan 的主页" class="blog-button">
+                <div class="img"><img src="/images/avatar.jpg" alt="img"></div>
+                <div class="info">
+                    <div class="info-back">
+                        <h2> 
+                            
+                                simingyan
+                            
+                        </h2>
+                        <p>
+                           
+                                Graphics PhD Student
+                            
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- 头像效果-end -->
+        <h1 class="panel-cover__title panel-title"><a href="/#blog" title="link to homepage for Siming Yan" class="blog-button">Siming Yan</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">个人博客</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">欢迎来到我的个人博客~</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+        
+        
+
+        <div class="navigation-wrapper">
+          <div>
+            <nav class="cover-navigation cover-navigation--primary">
+              <ul class="navigation">
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客主页</a></li>
+                
+                  <li class="navigation__item"><a href="/archive" title="archive">所有文章</a></li>
+                
+                  <li class="navigation__item"><a href="/tags" title="tags">标签</a></li>
+                
+                  <li class="navigation__item"><a href="/about" title="about">关于我</a></li>
+                
+              </ul>
+            </nav>
+          </div>          
+        </div>
+
+
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="panel-cover--overlay cover-clear"></div>
+    
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <h1 class="post-title">最大似然估计，最大后验概率估计</h1>
+    <div class="post-meta">
+      <img src="/images/calendar.png" width="20px"/> 
+      <time datetime="2019-04-23 23:14:06 +0800" itemprop="datePublished" class="post-meta__date date">2019-04-23</time>  
+         
+      <span id="busuanzi_container_page_pv"> | 阅读：<span id="busuanzi_value_page_pv"></span>次</span>
+    </p>
+    </div>
+  </header>
+
+  <section class="post">
+    <head>
+		<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+</head>
+
+<p>最大似然估计（Maximum likelihood estimation, 简称<strong>MLE</strong>）和最大后验概率估计(Maximum a posteriori estimation, 简称<strong>MAP</strong>）是很常用的两种参数估计方法，如果不理解这两种方法的思路，很容易弄混它们。下文将详细说明MLE和MAP的思路与区别。</p>
+
+<p>在研究这两个概念之前，我们先从概率和统计的区别讲起。</p>
+
+<h3 id="概率和统计的区别">概率和统计的区别</h3>
+
+<p>概率（probabilty）和统计（statistics）看似两个相近的概念，其实研究的问题刚好相反。
+概率研究的问题是，已知一个模型和参数，怎么去预测这个模型产生的结果的特性（例如均值，方差，协方差等等）。 举个例子，我想研究怎么养猪（模型是猪），我选好了想养的品种、喂养方式、猪棚的设计等等（选择参数），我想知道我养出来的猪大概能有多肥，肉质怎么样（预测结果）。</p>
+
+<p>统计研究的问题则相反。统计是，有一堆数据，要利用这堆数据去预测模型和参数。仍以猪为例。现在我买到了一堆肉，通过观察和判断，我确定这是猪肉（这就确定了模型。在实际研究中，也是通过观察数据推测模型是／像高斯分布的、指数分布的、拉普拉斯分布的等等），然后，可以进一步研究，判定这猪的品种、这是圈养猪还是跑山猪还是网易猪，等等（推测模型参数）。</p>
+
+<p>一句话总结：<strong>概率是已知模型和参数，推数据。统计是已知数据，推模型和参数。</strong></p>
+
+<p>显然，MLE和MAP都是统计领域的问题。它们都是用来推测参数的方法。为什么会存在着两种不同方法呢？ 这需要理解贝叶斯思想。我们来看看贝叶斯公式。</p>
+
+<h3 id="贝叶斯公式">贝叶斯公式</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>看完博客后对贝叶斯公式感觉还是理解的不透，希望日后能够有新的理解
+</code></pre></div></div>
+
+<p>$ P(A丨B) = \frac{P(B丨A)P(A)}{P(B)} $   【式1】</p>
+
+<p>把B展开，可以写成：</p>
+
+<p><script type="math/tex">P(A丨B) = \frac{P(B丨A)P(A)}{P(B丨A)P(A)+P(B丨～A)P(～A)}</script>   【式2】</p>
+
+<ul>
+  <li>$P(A 丨 B)$是A的后验概率，<script type="math/tex">P(A)</script>是A的先验概率</li>
+</ul>
+
+<p>这个式子就很有意思了。</p>
+
+<p>想想这个情况。一辆汽车（或者电瓶车）的警报响了，你通常是什么反应？有小偷？撞车了？ 不。。 你通常什么反应都没有。因为汽车警报响一响实在是太正常了！每天都要发生好多次。本来，汽车警报设置的功能是，出现了异常情况，需要人关注。然而，由于虚警实在是太多，人们渐渐不相信警报的功能了。</p>
+
+<p><strong>贝叶斯公式就是在描述，你有多大把握能相信一件证据？（how much you can trust the evidence）</strong></p>
+
+<p>我们假设响警报的目的就是想说汽车被砸了。把A计作“汽车被砸了”，B计作“警报响了”，带进贝叶斯公式里看。我们想求等式左边发生 A丨B 的概率，这是在说警报响了，汽车也确实被砸了。汽车被砸引起（trigger）警报响，即B丨A。但是，也有可能是汽车被小孩子皮球踢了一下、被行人碰了一下等其他原因（统统计作～A），其他原因引起汽车警报响了，即B丨～A。那么，现在突然听见警报响了，这时汽车已经被砸了的概率是多少呢（这即是说，警报响这个<em>证据</em>有了，多大把握能相信它确实是在报警说汽车被砸了）？想一想，应当这样来计算。用警报响起、汽车也被砸了这事件的数量，除以响警报事件的数量（这即【式1】）。进一步展开，即警报响起、汽车也被砸了的事件的数量，除以警报响起、汽车被砸了的事件数量加上警报响起、汽车没被砸的事件数量（这即【式2】）。</p>
+
+<p>可能有点绕，请稍稍想一想。</p>
+
+<p>再思考【式2】。想让P(A丨B)=1，即警报响了，汽车一定被砸了，该怎么做呢？让P(B～A)P(～A)=0即可。很容易想清楚，假若让P(～A)=0，即杜绝了汽车被球踢、被行人碰到等等其他所有情况，那自然，警报响了，只剩下一种可能——汽车被砸了。这即是提高了响警报这个<em>证据</em>的说服力。</p>
+
+<p><strong>从这个角度总结贝叶斯公式：做判断的时候，要考虑所有的因素。</strong> 老板骂你，不一定是你把什么工作搞砸了，可能只是他今天出门前和太太吵了一架。</p>
+
+<p>再思考【式2】。观察【式2】右边的分子，P/(B丨A)为汽车被砸后响警报的概率。姑且仍为这是1吧。但是，若P(A)很小，即汽车被砸的概率本身就很小，则P(B丨A)P(A)仍然很小，即【式2】右边分子仍然很小，P(A丨B)还是大不起来。 这里，P(A)即是常说的先验概率，如果A的先验概率很小，就算P(B丨A)较大，可能A的后验概率P(A丨B)还是不会大（假设P(B丨～A)P(～A)不变的情况下）。</p>
+
+<p><strong>从这个角度思考贝叶斯公式：一个本来就难以发生的事情，就算出现某个证据和他强烈相关，也要谨慎。证据很可能来自别的虽然不是很相关，但发生概率较高的事情。</strong> 发现刚才写的代码编译报错，可是我今天状态特别好，这语言我也很熟悉，犯错的概率很低。因此觉得是编译器出错了。 ————别，还是先再检查下自己的代码吧。</p>
+
+<p>以上就是对贝叶斯公式的一点浅层的理解，下面回到最大似然估计。</p>
+
+<h3 id="似然函数">似然函数</h3>
+
+<p>似然（likelihood）这个词其实和概率（probability）是差不多的意思，Colins字典这么解释：The likelihood of something happening is how likely it is to happen. 你把likelihood换成probability，这解释也读得通。但是在统计里面，似然函数和概率函数却是两个不同的概念（其实也很相近就是了）。</p>
+
+<p>对于这个函数：</p>
+
+<p>$P(x丨θ)$</p>
+
+<p>输入有两个：x表示某一个具体的数据；θ表示模型的参数。</p>
+
+<p>如果θ是已知确定的，x是变量，这个函数叫做概率函数(probability function)，它描述对于不同的样本点x，其出现概率是多少。</p>
+
+<p>如果x是已知确定的，θ是变量，这个函数叫做似然函数(likelihood function), 它描述对于不同的模型参数，出现x这个样本点的概率是多少。</p>
+
+<p>这有点像“一菜两吃”的意思。其实这样的形式我们以前也不是没遇到过。例如，$f(x,y)=x^y$
+, 即x的y次方。如果x是已知确定的(例如x=2)，这就是$f(y)=2^y$, 这是指数函数。 如果y是已知确定的(例如y=2)，这就是$f(x)=x^2$，这是二次函数。同一个数学形式，从不同的变量角度观察，可以有不同的名字。</p>
+
+<p>这么说应该清楚了吧？ 如果还没讲清楚，别急，下文会有具体例子。</p>
+
+<p>首先看一下最大似然估计(MLE)。</p>
+
+<h3 id="最大似然估计mle">最大似然估计(MLE)</h3>
+
+<p>最大似然估计<strong>就是利用已知的样本结果信息，反推最具有可能（最大概率）导致这些样本结果出现的模型参数值！</strong></p>
+
+<p><strong>换句话说，极大似然估计提供了一种给定观察数据来评估模型参数的方法，即：“模型已定，参数未知”。</strong></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>最大似然估计中采样需满足一个重要的假设，就是所有的采样都是独立同分布的。
+</code></pre></div></div>
+<p><strong>例子一</strong>：</p>
+
+<p>别人博客的一个例子。</p>
+
+<p>假如有一个罐子，里面有黑白两种颜色的球，数目多少不知，两种颜色的比例也不知。我  们想知道罐中白球和黑球的比例，但我们不能把罐中的球全部拿出来数。现在我们可以每次任意从已经摇匀的罐中拿一个球出来，记录球的颜色，然后把拿出来的球   再放回罐中。这个过程可以重复，我们可以用记录的球的颜色来估计罐中黑白球的比例。假如在前面的一百次重复记录中，有七十次是白球，请问罐中白球所占的比例最有可能是多少？</p>
+
+<p><strong>很多人马上就有答案了：70%。而其后的理论支撑是什么呢？</strong></p>
+
+<p>我们假设罐中白球的比例是p，那么黑球的比例就是1-p。因为每抽一个球出来，在记录颜色之后，我们把抽出的球放回了罐中并摇匀，<strong>所以每次抽出来的球的颜 色服从同一独立分布。</strong></p>
+
+<p>这里我们把一次抽出来球的颜色称为一次抽样。题目中在一百次抽样中，七十次是白球的,三十次为黑球事件的概率是P(样本结果丨Model)。</p>
+
+<p>如果第一次抽象的结果记为x1,第二次抽样的结果记为x2….那么样本结果为(x1,x2…..,x100)。这样，我们可以得到如下表达式：</p>
+
+<p>P(样本结果丨Model)</p>
+
+<p>　　= P(x1,x2,…,x100丨Model)</p>
+
+<p>　　= P(x1丨M)P(x2丨M)…P(x100丨M) （<strong>因为这里独立同分布</strong>）</p>
+
+<p>　　= p^70(1-p)^30.</p>
+
+<p>好的，我们已经有了观察样本结果出现的概率表达式了。那么我们要求的模型的参数，也就是求的式中的p。</p>
+
+<p>可以看出p有无数种可能的选择，既然是这样，<strong>最大似然估计就是让这个样本结果出现的可能性最大，这样就是对p求导即可</strong>。</p>
+
+<p><strong>例子二</strong>：</p>
+
+<p>假设我们要统计全国人民的年均收入，首先假设这个收入服从服从正态分布，但是该分布的均值与方差未知。我们没有人力与物力去统计全国每个人的收入。我们国家有10几亿人口呢？那么岂不是没有办法了？</p>
+
+<p><strong>不不不，有了极大似然估计之后，我们可以采用嘛！我们比如选取一个城市，或者一个乡镇的人口收入，作为我们的观察样本结果。然后通过最大似然估计来获取上述假设中的正态分布的参数。</strong></p>
+
+<p><strong>有了参数的结果后，我们就可以知道该正态分布的期望和方差了。也就是我们通过了一个小样本的采样，反过来知道了全国人民年收入的一系列重要的数学指标量！</strong></p>
+
+<p>那么我们就知道了极大似然估计的核心关键就是对于一些情况，<strong>样本太多，无法得出分布的参数值，可以采样小样本后，利用极大似然估计获取假设中分布的参数值。</strong></p>
+
+<h3 id="最大后验概率估计map">最大后验概率估计(MAP)</h3>
+
+<p>假设我们做实验抛了十次硬币，发现7次硬币正面向上，最大似然估计认为正面向上的概率是0.7。（ummm..这非常直观合理，对吧？）</p>
+
+<p>且慢，一些人可能会说，硬币一般都是均匀的啊！ 就算你做实验发现结果是“反正正正正反正正正反”，我也不信θ=0.7。</p>
+
+<p>这里就包含了贝叶斯学派的思想了——要考虑先验概率。 为此，引入了<strong>最大后验概率估计</strong>。</p>
+
+<p>最大似然估计是求参数<em>θ</em>, 使似然函数$P(x0丨θ)$最大。最大后验概率估计则是想求<em>θ</em>使$P(x0丨θ)P(θ)$最大。求得的<em>θ</em>不单单让似然函数大，<em>θ</em>自己出现的先验概率也得大。 （这有点像正则化里加惩罚项的思想，不过正则化里是利用加法，而MAP里是利用乘法）</p>
+
+<p>MAP其实是在最大化<script type="math/tex">P(θ丨x0) = \frac{P(x0丨θ)P(θ)}{P(x0)}</script>,所以叫最大后验概率估计。不过因为x0是确定的，P(x0)是一个已知值，所以去掉了分母P(x0)（假设“投10次硬币”是一次实验，实验做了1000次，“反正正正正反正正正反”出现了n次，则P(x0)=n/1000。总之，这是一个可以由数据集得到的值）。</p>
+
+<p>对于投硬币的例子来看，我们认为（”先验地知道“）<em>θ</em>取0.5的概率很大，取其他值的概率小一些。我们用一个高斯分布来具体描述我们掌握的这个先验知识，例如假设P(θ)为均值0.5，方差0.1的高斯函数，这样，$P(x0丨θ)P(θ)$<strong>的最大值就不再是0.7,而是在θ=0.558</strong>.</p>
+
+<p>但如果做了1000次实验，其中700次正面向上，那么此时的θ就在0.696取得最大值。</p>
+
+
+  </section>
+</article>
+
+<section>
+
+            <div class="content-play">
+              <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下">打赏一个呗</a></p>
+              <div class="hide_box-play"></div>
+              <div class="shang_box-play">
+                <a class="shang_close-play" href="javascript:void(0)" onclick="dashangToggle()" title="关闭"><img src="/images/payimg/close.jpg" alt="取消" /></a>
+                <div class="shang_tit-play">
+                  <p>感谢您的支持，我会继续努力的!</p>
+                </div>
+                <div class="shang_payimg">
+                    <img src="/images/payimg/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+                </div>
+              <div class="shang_payimg">    
+                    <img src="/images/payimg/weipayimg.jpg" alt="扫码支持" title="扫一扫" />
+                </div>
+                <div class="pay_explain">扫码打赏，你说多少就多少</div>
+                <div class="shang_payselect">
+                  <div class="pay_item checked" data-id="alipay">
+                    <span class="pay_logo"><img src="/images/payimg/alipay.jpg" alt="支付宝" /></span>
+                  </div>
+                  <div class="pay_item" data-id="weipay">
+                    <span class="pay_logo"><img src="/images/payimg/wechat.jpg" alt="微信" /></span>
+                  </div>
+                </div>
+                <div class="shang_info-play">
+                  <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+                </div>
+              </div>
+            </div>
+            <script type="text/javascript">
+            function dashangToggle(){
+              $(".hide_box-play").fadeToggle();
+              $(".shang_box-play").fadeToggle();
+            }
+            </script>
+
+            <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';"></div>
+
+            <style type="text/css">
+              .content-play{width:80%;margin-top: 20px;margin-bottom: 10px;height:40px;}
+              .hide_box-play{z-index:999;filter:alpha(opacity=50);background:#666;opacity: 0.5;-moz-opacity: 0.5;left:0;top:0;height:99%;width:100%;position:fixed;display:none;}
+              .shang_box-play{width:540px;height:540px;padding:10px;background-color:#fff;border-radius:10px;position:fixed;z-index:1000;left:50%;top:50%;margin-left:-280px;margin-top:-280px;border:1px dotted #dedede;display:none;}
+              .shang_box-play img{border:none;border-width:0;}
+              .dashang{display:block;width:100px;margin:5px auto;height:25px;line-height:25px;padding:10px;background-color:#E74851;color:#fff;text-align:center;text-decoration:none;border-radius:10px;font-weight:bold;font-size:16px;transition: all 0.3s;}
+              .dashang:hover{opacity:0.8;padding:15px;font-size:18px;}
+              .shang_close-play{float:right;display:inline-block;
+                margin-right: 10px;margin-top: 20px;
+              }
+              .shang_logo{display:block;text-align:center;margin:20px auto;}
+              .shang_tit-play{width: 100%;height: 75px;text-align: center;line-height: 66px;color: #a3a3a3;font-size: 16px;background: url('/images/payimg/cy-reward-title-bg.jpg');font-family: 'Microsoft YaHei';margin-top: 7px;margin-right:2px;}
+              .shang_tit-play p{color:#a3a3a3;text-align:center;font-size:16px;}
+              .shang_payimg{width:140px;padding:10px;padding-left: 80px; /*border:6px solid #EA5F00;**/margin:0 auto;border-radius:3px;height:140px;display:inline-block;}
+              .shang_payimg img{display:inline-block;margin-right:10px;float:left;text-align:center;width:140px;height:140px; }
+              .pay_explain{text-align:center;margin:10px auto;font-size:12px;color:#545454;}
+              .shang_payselect{text-align:center;margin:0 auto;margin-top:40px;cursor:pointer;height:60px;width:500px;margin-left:110px;}
+              .shang_payselect .pay_item{display:inline-block;margin-right:140px;float:left;}
+              .shang_info-play{clear:both;}
+              .shang_info-play p,.shang_info-play a{color:#C3C3C3;text-align:center;font-size:12px;text-decoration:none;line-height:2em;}
+            </style>
+
+       <ul class="pager">
+        
+        <li class="previous">
+            <a href="/2019/04/%E9%9A%90%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E6%A8%A1%E5%9E%8B/" data-toggle="tooltip" data-placement="top" title="隐马尔可夫模型">上一篇：  <span>隐马尔可夫模型</span>
+            </a>
+        </li>
+        
+        
+        <li class="next">
+            <a href="/2019/05/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E8%B5%8B%E5%80%BC%E8%AF%AD%E5%8F%A5/" data-toggle="tooltip" data-placement="top" title="表达式与赋值语句">下一篇：  <span>表达式与赋值语句</span>
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+<section class="post-comments">
+
+  
+    <div id="disqus_thread"></div>
+    <script>
+    
+    var disqus_config = function () {
+        this.page.url = "http://localhost:4000/2019/04/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1/";
+        this.page.identifier = "/2019/04/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1/";
+    };
+    var disqus_shortname = 'leopard';
+    
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>要查看<a href="http://disqus.com/?ref_noscript"> Disqus </a>评论，请启用 JavaScript</noscript>
+    
+
+  
+
+</section>
+
+
+            <section class="footer">
+    <footer>
+        <div class = "footer_div">  
+        <nav class="cover-navigation navigation--social">
+          <ul class="navigation">
+
+          
+          <!-- Github -->
+          <li class="navigation__item_social">
+            <a href="https://github.com/SimingYan" title="@SimingYan 的 Github" target="_blank">
+              <div class="footer-social-icon" style="background:url(/images/github.png);"></div>
+            </a>
+          </li>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+          
+          <!-- Email -->
+          <li class="navigation__item_social">
+            <a href="mailto:simingyanpku@gmail.com" title="Contact me">
+              <div class="footer-social-icon" style="background:url(/images/email.png);"></div>
+            </a>
+          </li>
+          
+          
+          <!-- RSS -->
+          <li class="navigation__item_social">
+            <a href="/feed.xml" rel="author" title="RSS" target="_blank">
+              <div class="footer-social-icon" style="background:url(/images/rss.png);"></div>
+              <span class="label">RSS</span>
+            </a>
+          </li>
+
+          </ul>
+        </nav>
+
+        </div>
+
+        <div class = "footer_div">  
+           <p class="copyright text-muted">
+            Copyright &copy; Siming Yan 2019 Theme by <a href="http://baixin.io/">leopardpan</a> |
+            <iframe
+                style="margin-left: 2px; margin-bottom:-5px;"
+                frameborder="0" scrolling="0" width="91px" height="20px"
+                src="https://ghbtns.com/github-btn.html?user=leopardpan&repo=leopardpan.github.io&type=star&count=true" >
+            </iframe>
+            </p>
+        	<div align="right">
+    			<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+          <!-- 访问统计 -->
+          <span id="busuanzi_container_site_pv">
+            本站总访问量
+            <span id="busuanzi_value_site_pv"></span>次
+          </span>
+
+        </div>
+        <div>
+    </footer>
+</section>
+
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript" src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+  </body>
+
+</html>

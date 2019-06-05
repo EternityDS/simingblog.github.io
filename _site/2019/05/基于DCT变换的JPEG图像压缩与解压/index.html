@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>基于DCT变换的JPEG图像压缩与解压</title>
+  <meta name="description" content="		    ">
+  <meta name="author" content="leopardpan">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="基于DCT变换的JPEG图像压缩与解压">
+  <meta name="twitter:description" content="		    ">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="基于DCT变换的JPEG图像压缩与解压">
+  <meta property="og:description" content="		    ">
+  
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link href="/images/favicon.png" rel="shortcut icon" type="image/png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="canonical" href="http://localhost:4000/2019/05/%E5%9F%BA%E4%BA%8EDCT%E5%8F%98%E6%8D%A2%E7%9A%84JPEG%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B/">
+  <link rel="alternate" type="application/rss+xml" title="Siming Yan" href="http://localhost:4000/feed.xml">
+  
+  <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
+
+<!-- 站点统计 -->
+  <script 
+  async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>  
+
+<!-- 百度统计 -->
+  
+  <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?xxxx";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+  </script>
+  
+
+<!-- google 统计 -->
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'xxxx', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9005224472374751",
+    enable_page_level_ads: true
+  });
+</script>
+
+</head>
+
+
+  <body>
+
+    <span class="mobile btn-mobile-menu">        
+      <div class="nav_container">
+         <nav class="nav-menu-item" style = "float:right">
+            <i class="nav-menu-item">
+              <a href="/#blog" title="" class="blog-button">  博客主页
+              </a>
+            </i>
+            
+                <i class="nav-menu-item">
+
+                  <a href="/archive" title="archive" class="btn-mobile-menu__icon">
+                      所有文章
+                  </a>
+                </i>
+            
+                <i class="nav-menu-item">
+
+                  <a href="/tags" title="tags" class="btn-mobile-menu__icon">
+                      标签
+                  </a>
+                </i>
+            
+                <i class="nav-menu-item">
+
+                  <a href="/about" title="about" class="btn-mobile-menu__icon">
+                      关于我
+                  </a>
+                </i>
+            
+          </nav>
+      </div>
+    </span>
+    
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url('/images/background-cover.jpg')">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <!-- 头像效果-start -->
+        <div class="ih-item circle effect right_to_left">            
+            <a href="/#blog" title="前往 Siming Yan 的主页" class="blog-button">
+                <div class="img"><img src="/images/avatar.jpg" alt="img"></div>
+                <div class="info">
+                    <div class="info-back">
+                        <h2> 
+                            
+                                simingyan
+                            
+                        </h2>
+                        <p>
+                           
+                                Graphics PhD Student
+                            
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- 头像效果-end -->
+        <h1 class="panel-cover__title panel-title"><a href="/#blog" title="link to homepage for Siming Yan" class="blog-button">Siming Yan</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">个人博客</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">欢迎来到我的个人博客~</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+        
+        
+
+        <div class="navigation-wrapper">
+          <div>
+            <nav class="cover-navigation cover-navigation--primary">
+              <ul class="navigation">
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客主页</a></li>
+                
+                  <li class="navigation__item"><a href="/archive" title="archive">所有文章</a></li>
+                
+                  <li class="navigation__item"><a href="/tags" title="tags">标签</a></li>
+                
+                  <li class="navigation__item"><a href="/about" title="about">关于我</a></li>
+                
+              </ul>
+            </nav>
+          </div>          
+        </div>
+
+
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="panel-cover--overlay cover-clear"></div>
+    
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <h1 class="post-title">基于DCT变换的JPEG图像压缩与解压</h1>
+    <div class="post-meta">
+      <img src="/images/calendar.png" width="20px"/> 
+      <time datetime="2019-05-13 23:14:06 +0800" itemprop="datePublished" class="post-meta__date date">2019-05-13</time>  
+         
+      <span id="busuanzi_container_page_pv"> | 阅读：<span id="busuanzi_value_page_pv"></span>次</span>
+    </p>
+    </div>
+  </header>
+
+  <section class="post">
+    <head>
+		<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+</head>
+
+<h3 id="什么是图像压缩">什么是图像压缩</h3>
+
+<p>目前常用的图像文件格式有十几种，其中JPEG格式由于占用空间小，图像质量高，而为用户广泛采用。JPEG即联合图像专家组（Joint Photographic Experts Group）,隶属于ISO国际标准化组织，主要负责定制静态数字图像的编码方法，即所谓的JPEG算子。她适用于各种不同类型、不同分辨率的彩色和黑白二值静止图像。现阶段，JPEG专家小组开发出2种压缩算法，2种熵编码方法以及4种编码模式，这里采用：</p>
+
+<p><strong>压缩算法：</strong>有损的离散余弦变化DCT(Discrete Cosine Transform)</p>
+
+<p><strong>熵编码方法：</strong>Huffman编码</p>
+
+<p><strong>编码模式：</strong>基于DPCM，保证解码后完全精确恢复到原图像采样值</p>
+
+<h3 id="jpeg压缩过程">JPEG压缩过程</h3>
+
+<p><img src="/Users/dantes/Library/Application Support/typora-user-images/image-20190513212844448.png" alt="image-20190513212844448" /></p>
+
+<h4 id="1-颜色空间转换">(1) 颜色空间转换</h4>
+<p>这里采用<strong>YUV/YCbCr颜色空间</strong>，采用YUV颜色空间的重要性是<strong>它的亮度信号Y和色度信号U、V是分离的（Y表示亮度，U(Cb)、V(Cr)表示色度，有时候分别又说表示色度和饱和度)。</strong>如果只有Y信号分量而没有U、V分量，那么这样表示的图就是黑白灰度图。彩色电视采用YUV空间正是为了用亮度信号Y解决彩色电视机与黑白电视机的兼容问题，使黑白电视机也能接收彩色信号。
+电视信号在发射时，转换成YUV形式，接受时再还原成RGB三基色信号，由显像管显示（RGB-&gt;YUV-&gt;编码发送——YUV-&gt;RGB-&gt;显示）
+这里主要利用了HVS(Human Visual System)对亮度比色度更敏感的特点，而计算机系统没有人眼这样的识别功能，所以主要使用RGB三基色原理（世界中任一颜色都可以使用RGB以不同的权重联合起来表示）。</p>
+
+<h4 id="2-采样">(2) 采样</h4>
+<p>根据生物学研究表明，<strong>HVS对亮度比色度更敏感</strong>。因此我们可以认为将彩色信息的清晰度较低些，这样可显著压缩色度所需带宽，也就是Y分量比Cb和Cr的分量重要的多。在图片格式国际标准BMP中，采用的RGB颜色空间三个分量就需要3个字节进行采样，也就是我们说的RGB888模式。<strong>在JPEG中主要采用411和422的采样方式</strong>。（也就是在2X2的空间域中，本应总共需要4个Y,4个U，4个V,总共需要4+4+4=12字节，422采样意思为每4个像素单元有4个Y,2个U,2个V,此时只需要4+2+2=8字节，411则是6字节，相应的420类似。其中420格式广泛用于数字电视、会议电视、DVD中）</p>
+
+<p>采用这样的采样方式，虽然损失了一定的精度，但是在HVS观察不到的前提下较少了数据量。</p>
+
+<p>本次作业中我们采用411采样的方式。</p>
+
+<p>(3、4) 分块</p>
+
+<h2 id="实验报告">实验报告</h2>
+
+<h4 id="1500012820-严思明">1500012820 严思明</h4>
+
+<p>实验结果：</p>
+
+<p>当前量化表下压缩后的图像：</p>
+
+<p><img src="/Users/dantes/Library/Application Support/typora-user-images/image-20190513213821623.png" alt="image-20190513213821623" /></p>
+
+<p>压缩率：</p>
+
+<p>size(encode.b) / size(source.png) = 560856 / 1477654 = 0.38</p>
+
+<p>这里误差图像直接用原图减去重建后图像：</p>
+
+<p><img src="/Users/dantes/Library/Application Support/typora-user-images/image-20190513214148984.png" alt="image-20190513214148984" /></p>
+
+<p>第二种量化表：</p>
+
+<p><img src="/Users/dantes/Library/Application Support/typora-user-images/image-20190513221200075.png" alt="image-20190513221200075" /></p>
+
+<p>压缩率：</p>
+
+<p>3229191 / 1477654 = 2.19</p>
+
+<p>误差图像：</p>
+
+<p><img src="/Users/dantes/Library/Application Support/typora-user-images/image-20190513221219012.png" alt="image-20190513221219012" /></p>
+
+<p>第三种量化表：</p>
+
+<p><img src="/Users/dantes/Library/Application Support/typora-user-images/image-20190513221612318.png" alt="image-20190513221612318" /></p>
+
+<p>压缩率：</p>
+
+<p>732801 / 1477654 = 0.49</p>
+
+<p>误差图像：</p>
+
+<p><img src="/Users/dantes/Library/Application Support/typora-user-images/image-20190513221634304.png" alt="image-20190513221634304" /></p>
+
+<p>第四种量化表：</p>
+
+<p><img src="/Users/dantes/Library/Application Support/typora-user-images/image-20190513221904248.png" alt="image-20190513221904248" /></p>
+
+<p>压缩率：</p>
+
+<p>3229191 / 1477654 = 2.19</p>
+
+<p>误差图像：</p>
+
+<p><img src="/Users/dantes/Library/Application Support/typora-user-images/image-20190513221923781.png" alt="image-20190513221923781" /></p>
+
+
+  </section>
+</article>
+
+<section>
+
+            <div class="content-play">
+              <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下">打赏一个呗</a></p>
+              <div class="hide_box-play"></div>
+              <div class="shang_box-play">
+                <a class="shang_close-play" href="javascript:void(0)" onclick="dashangToggle()" title="关闭"><img src="/images/payimg/close.jpg" alt="取消" /></a>
+                <div class="shang_tit-play">
+                  <p>感谢您的支持，我会继续努力的!</p>
+                </div>
+                <div class="shang_payimg">
+                    <img src="/images/payimg/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+                </div>
+              <div class="shang_payimg">    
+                    <img src="/images/payimg/weipayimg.jpg" alt="扫码支持" title="扫一扫" />
+                </div>
+                <div class="pay_explain">扫码打赏，你说多少就多少</div>
+                <div class="shang_payselect">
+                  <div class="pay_item checked" data-id="alipay">
+                    <span class="pay_logo"><img src="/images/payimg/alipay.jpg" alt="支付宝" /></span>
+                  </div>
+                  <div class="pay_item" data-id="weipay">
+                    <span class="pay_logo"><img src="/images/payimg/wechat.jpg" alt="微信" /></span>
+                  </div>
+                </div>
+                <div class="shang_info-play">
+                  <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+                </div>
+              </div>
+            </div>
+            <script type="text/javascript">
+            function dashangToggle(){
+              $(".hide_box-play").fadeToggle();
+              $(".shang_box-play").fadeToggle();
+            }
+            </script>
+
+            <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';"></div>
+
+            <style type="text/css">
+              .content-play{width:80%;margin-top: 20px;margin-bottom: 10px;height:40px;}
+              .hide_box-play{z-index:999;filter:alpha(opacity=50);background:#666;opacity: 0.5;-moz-opacity: 0.5;left:0;top:0;height:99%;width:100%;position:fixed;display:none;}
+              .shang_box-play{width:540px;height:540px;padding:10px;background-color:#fff;border-radius:10px;position:fixed;z-index:1000;left:50%;top:50%;margin-left:-280px;margin-top:-280px;border:1px dotted #dedede;display:none;}
+              .shang_box-play img{border:none;border-width:0;}
+              .dashang{display:block;width:100px;margin:5px auto;height:25px;line-height:25px;padding:10px;background-color:#E74851;color:#fff;text-align:center;text-decoration:none;border-radius:10px;font-weight:bold;font-size:16px;transition: all 0.3s;}
+              .dashang:hover{opacity:0.8;padding:15px;font-size:18px;}
+              .shang_close-play{float:right;display:inline-block;
+                margin-right: 10px;margin-top: 20px;
+              }
+              .shang_logo{display:block;text-align:center;margin:20px auto;}
+              .shang_tit-play{width: 100%;height: 75px;text-align: center;line-height: 66px;color: #a3a3a3;font-size: 16px;background: url('/images/payimg/cy-reward-title-bg.jpg');font-family: 'Microsoft YaHei';margin-top: 7px;margin-right:2px;}
+              .shang_tit-play p{color:#a3a3a3;text-align:center;font-size:16px;}
+              .shang_payimg{width:140px;padding:10px;padding-left: 80px; /*border:6px solid #EA5F00;**/margin:0 auto;border-radius:3px;height:140px;display:inline-block;}
+              .shang_payimg img{display:inline-block;margin-right:10px;float:left;text-align:center;width:140px;height:140px; }
+              .pay_explain{text-align:center;margin:10px auto;font-size:12px;color:#545454;}
+              .shang_payselect{text-align:center;margin:0 auto;margin-top:40px;cursor:pointer;height:60px;width:500px;margin-left:110px;}
+              .shang_payselect .pay_item{display:inline-block;margin-right:140px;float:left;}
+              .shang_info-play{clear:both;}
+              .shang_info-play p,.shang_info-play a{color:#C3C3C3;text-align:center;font-size:12px;text-decoration:none;line-height:2em;}
+            </style>
+
+       <ul class="pager">
+        
+        <li class="previous">
+            <a href="/2019/05/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E8%B5%8B%E5%80%BC%E8%AF%AD%E5%8F%A5/" data-toggle="tooltip" data-placement="top" title="表达式与赋值语句">上一篇：  <span>表达式与赋值语句</span>
+            </a>
+        </li>
+        
+        
+        <li class="next">
+            <a href="/2019/05/%E9%A2%84%E6%B5%8B%E7%AE%97%E6%B3%95-%E6%8C%87%E6%95%B0%E5%B9%B3%E6%BB%91%E6%B3%95/" data-toggle="tooltip" data-placement="top" title="时间序列分解与数据平滑及预测">下一篇：  <span>时间序列分解与数据平滑及预测</span>
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+<section class="post-comments">
+
+  
+    <div id="disqus_thread"></div>
+    <script>
+    
+    var disqus_config = function () {
+        this.page.url = "http://localhost:4000/2019/05/%E5%9F%BA%E4%BA%8EDCT%E5%8F%98%E6%8D%A2%E7%9A%84JPEG%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B/";
+        this.page.identifier = "/2019/05/%E5%9F%BA%E4%BA%8EDCT%E5%8F%98%E6%8D%A2%E7%9A%84JPEG%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B/";
+    };
+    var disqus_shortname = 'leopard';
+    
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>要查看<a href="http://disqus.com/?ref_noscript"> Disqus </a>评论，请启用 JavaScript</noscript>
+    
+
+  
+
+</section>
+
+
+            <section class="footer">
+    <footer>
+        <div class = "footer_div">  
+        <nav class="cover-navigation navigation--social">
+          <ul class="navigation">
+
+          
+          <!-- Github -->
+          <li class="navigation__item_social">
+            <a href="https://github.com/SimingYan" title="@SimingYan 的 Github" target="_blank">
+              <div class="footer-social-icon" style="background:url(/images/github.png);"></div>
+            </a>
+          </li>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+          
+          <!-- Email -->
+          <li class="navigation__item_social">
+            <a href="mailto:simingyanpku@gmail.com" title="Contact me">
+              <div class="footer-social-icon" style="background:url(/images/email.png);"></div>
+            </a>
+          </li>
+          
+          
+          <!-- RSS -->
+          <li class="navigation__item_social">
+            <a href="/feed.xml" rel="author" title="RSS" target="_blank">
+              <div class="footer-social-icon" style="background:url(/images/rss.png);"></div>
+              <span class="label">RSS</span>
+            </a>
+          </li>
+
+          </ul>
+        </nav>
+
+        </div>
+
+        <div class = "footer_div">  
+           <p class="copyright text-muted">
+            Copyright &copy; Siming Yan 2019 Theme by <a href="http://baixin.io/">leopardpan</a> |
+            <iframe
+                style="margin-left: 2px; margin-bottom:-5px;"
+                frameborder="0" scrolling="0" width="91px" height="20px"
+                src="https://ghbtns.com/github-btn.html?user=leopardpan&repo=leopardpan.github.io&type=star&count=true" >
+            </iframe>
+            </p>
+        	<div align="right">
+    			<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+          <!-- 访问统计 -->
+          <span id="busuanzi_container_site_pv">
+            本站总访问量
+            <span id="busuanzi_value_site_pv"></span>次
+          </span>
+
+        </div>
+        <div>
+    </footer>
+</section>
+
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript" src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+  </body>
+
+</html>
